@@ -949,6 +949,245 @@ cursor: pointer;
 </div>
 </div>
 <!-- ══════ PROJECT 06 ══════ -->
-<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;">
-  <img class="pd-media" src="asset_18.png" alt="Зеркало" style="width:100%;height:100%;object-fit:cover;display:block;">
+<div class="page" id="page-p7">
+<nav class="site-nav">
+<div class="nav-name">Anastasia Chernikova</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">Home page</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p6');return false;">Зеркало</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc"><p class="ph-body">Серия афиш для независимых культурных событий. Ручная работа с типографикой и коллажем — каждый постер уникален и создавался с нуля под конкретное событие.</p><p class="ph-body">12 постеров для концертов, выставок и перформансов. Техника: цифровая печать + ручная доработка. Форматы A1 и B1.</p></div><div class="pd-text pd-span-2 pd-hero-title"><div class="ph-title">Underdog постеры<span class="work-year">, 2024</span></div></div><div class="pd-text pd-span-2 pd-hero-tags"><ul class="ph-tags"><li>Graphic Design</li><li>Printed Matter</li></ul></div><div class="pd-img pd-span-3 pd-h0 pg6 pd-hero-img"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg6b"></div>
 </div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-span-3"></div>
+<div class="pd-img pd-span-7 pd-h22 pg6"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-3 pd-h12 pg6c"></div>
+<div class="pd-span-7"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h22 pg6"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function showProject(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showHome() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-home');
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Badge physics + rope
+  const container = document.getElementById('badgeContainer');
+  const canvas    = document.getElementById('badgeCanvas');
+  const card      = document.getElementById('badgeCard');
+  if (!container || !canvas || !card) return;
+
+  const ctx       = canvas.getContext('2d');
+  const CARD_W  = 225;
+  const L       = 130;
+  const MAX_ANG = 0.52; // ~30 degrees max swing
+
+  let angle = 0, vel = 0;
+  let W, H, ax, ay;
+
+  let dragging = false;
+  let freeX, freeY, pvx, pvy, dox, doy;
+
+  function setup() {
+    W = container.offsetWidth;
+    H = container.offsetHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+    ax = W / 2;
+    ay = 0;
+  }
+
+  function cardCenter() {
+    if (dragging) return [freeX, freeY];
+    return [ax + Math.sin(angle) * L, ay + Math.cos(angle) * L];
+  }
+
+  function tick() {
+    if (!dragging) {
+      vel += -0.003 * Math.sin(angle);
+      vel *= 0.92;
+      angle += vel;
+      if (angle >  MAX_ANG) { angle =  MAX_ANG; vel = -Math.abs(vel) * 0.3; }
+      if (angle < -MAX_ANG) { angle = -MAX_ANG; vel =  Math.abs(vel) * 0.3; }
+    }
+
+    const [cx, cy] = cardCenter();
+    card.style.left = (cx - CARD_W / 2) + 'px';
+    card.style.top  = cy + 'px';
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    const rx = cx, ry = cy + 8;
+    const mx = (ax + rx) / 2;
+    const my = (ay + ry) / 2 + 14;
+    ctx.quadraticCurveTo(mx, my, rx, ry);
+    ctx.strokeStyle = '#8C847C';
+    ctx.lineWidth   = 4;
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+
+    requestAnimationFrame(tick);
+  }
+
+  function getXY(e) {
+    const r = container.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return [s.clientX - r.left, s.clientY - r.top];
+  }
+
+  function isOnCard(mx, my) {
+    const [cx, cy] = cardCenter();
+    const px = cx - CARD_W / 2, py = cy;
+    const ch = card.offsetHeight || 220;
+    return mx >= px && mx <= px + CARD_W && my >= py && my <= py + ch;
+  }
+
+  function onDown(e) {
+    const [mx, my] = getXY(e);
+    if (!isOnCard(mx, my)) return;
+    dragging = true;
+    const [cx, cy] = cardCenter();
+    freeX = cx; freeY = cy;
+    pvx = cx; pvy = cy;
+    dox = mx - cx; doy = my - cy;
+    card.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    const [mx, my] = getXY(e);
+    pvx = freeX; pvy = freeY;
+    freeX = mx - dox;
+    const ch = card.offsetHeight || 220;
+    freeY = Math.max(10, Math.min(H - ch, my - doy));
+
+    const da = Math.atan2(freeX - ax, Math.max(freeY - ay, 1));
+    if (Math.abs(da) > MAX_ANG) {
+      const clampedA = Math.sign(da) * MAX_ANG;
+      const dist = Math.sqrt((freeX-ax)**2 + (freeY-ay)**2);
+      freeX = ax + Math.sin(clampedA) * dist;
+    }
+    e.preventDefault();
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    card.style.cursor = 'grab';
+    const dx = freeX - ax, dy = freeY - ay;
+    angle = Math.atan2(dx, Math.max(dy, 1));
+    angle = Math.max(-MAX_ANG, Math.min(MAX_ANG, angle));
+    vel = ((freeX - pvx) * Math.cos(angle) - (freeY - pvy) * Math.sin(angle)) / L * 0.4;
+  }
+
+  container.addEventListener('mousedown', onDown);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  container.addEventListener('touchstart', onDown, { passive: false });
+  window.addEventListener('touchmove', onMove, { passive: false });
+  window.addEventListener('touchend', onUp);
+
+  // Photo upload
+  const photoDiv = document.getElementById('badgePhoto');
+  if (photoDiv) {
+    const fi = document.createElement('input');
+    fi.type = 'file';
+    fi.accept = 'image/*';
+    fi.style.display = 'none';
+    document.body.appendChild(fi);
+    photoDiv.style.cursor = 'pointer';
+    photoDiv.addEventListener('mousedown', e => e.stopPropagation());
+    photoDiv.addEventListener('click', e => { fi.click(); e.stopPropagation(); });
+    fi.addEventListener('change', () => {
+      const f = fi.files && fi.files[0];
+      if (!f) return;
+      photoDiv.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(f);
+      photoDiv.appendChild(img);
+    });
+  }
+
+  setup();
+  tick();
+  if (window.ResizeObserver) new ResizeObserver(setup).observe(container);
+  else window.addEventListener('resize', setup);
+});
+</script>
+<script>
+/* Keep block #3 height tied to the real rendered height of block #1 (ideal size) in the header stack. */
+document.addEventListener('DOMContentLoaded', () => {
+  const page = document.getElementById('page-p2');
+  if (!page) return;
+  const grid = page.querySelector('.pd-frames-grid');
+  const base = page.querySelector('.pd-follow-top .pd-frame.pd-h0') || page.querySelector('.pd-follow-top .pd-frame');
+  if (!grid || !base) return;
+
+  const apply = () => {
+    const h = base.getBoundingClientRect().height;
+    if (h && h > 0) grid.style.setProperty('--pfH', `${h}px`);
+  };
+
+  apply();
+  window.addEventListener('resize', apply);
+  if (window.ResizeObserver) new ResizeObserver(apply).observe(base);
+});
+</script>
+<script>
+(function kickGif(){
+  function run(){
+    var img = document.querySelector('.cover-b3');
+    if(!img) return;
+    var s = img.getAttribute('src');
+    // force reload once to ensure animation starts in some browsers
+    img.setAttribute('src','');
+    img.offsetHeight; // reflow
+    img.setAttribute('src', s);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const img = document.querySelector('.cover-b4');
+  if(!img) return;
+  const frame = img.closest('.pd-frame');
+  if(frame) frame.style.overflow = 'hidden';
+});
+</script>
+</div></body>
+</html>
