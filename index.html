@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alex Mora — Designer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; background: #F1F1F1; color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 19.5px; font-weight: 400;
+}
+
+/* ── PAGE SYSTEM ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── GLOBAL NAV (project pages) ── */
+.site-nav{
+  position: sticky; top: 0; z-index: 200;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  padding: 16px 28px;
+  background: #F1F1F1;
+  border-bottom: none;
+}
+
+.nav-cell{ padding: 0; font-size: 13px; color: #1A1A1A; }
+.nav-cell:not(:last-child){ border-right: none; }
+.nav-name{
+  justify-self: start;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+}
+.nav-home{ justify-self: center; }
+.nav-next{ justify-self: end; }
+.site-nav a{
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  text-decoration: none;
+}
+.site-nav a:hover{ opacity: 0.65; }
+.nav-next a{ color: #2F6BFF; }
+/* ── HOME INFO BLOCK ── */
+.info-area {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  animation: fadeIn 0.4s ease both;
+}
+
+
+/* ── 10-COLUMN LAYOUT (home + nav + projects) ── */
+.info-area > .block-1 { grid-column: 1 / span 3; }
+.info-area > .block-2 { grid-column: 4 / span 2; }
+.info-area > .block-3 { grid-column: 6 / span 2; }
+.info-area > .block-4 { grid-column: 8 / span 3; }
+
+/* nav cells: 3 / 2 / 2 / 3 */
+.site-nav > .nav-cell:nth-child(1) { grid-column: 1 / span 3; }
+.site-nav > .nav-cell:nth-child(2) { grid-column: 4 / span 2; }
+.site-nav > .nav-cell:nth-child(3) { grid-column: 6 / span 2; }
+.site-nav > .nav-cell:nth-child(4) { grid-column: 8 / span 3; }
+
+/* projects rows: align to 10 columns; last 3 columns intentionally empty */
+.block {
+  position: relative; padding: 28px 24px 40px 28px;
+  min-height: 420px; display: flex; flex-direction: column;
+}
+.block::before, .block::after {
+  font-family: 'EB Garamond', serif; font-size: 19.5px;
+  color: #BEBBB6; position: absolute; line-height: 1; pointer-events: none;
+}
+.block::before { content: '+'; top: 14px; left: 14px; }
+.block::after  { content: '+'; bottom: 14px; left: 14px; }
+.block-mid::after { content: '+'; bottom: 14px; right: 14px; left: auto; }
+
+.bio-name    { font-size: 19.5px; line-height: 1.58; margin-bottom: 20px; }
+.bio-edu     { font-size: 19.5px; line-height: 1.58; }
+.bio-practice{ font-size: 19.5px; line-height: 1.58; margin-top: 18px; }
+.block-1-spacer { flex: 1; }
+
+.disc-list { list-style: none; }
+.disc-list li { font-size: 19.5px; line-height: 2.4; text-transform: none;
+  letter-spacing: 0.01em; }
+
+.work-list { list-style: none; }
+.work-list li { font-size: 19.5px; line-height: 2.4; cursor: pointer; transition: color 0.14s; user-select: none; }
+.work-list li:hover { color: #AEAAA4; }
+.work-year { font-family: 'EB Garamond', serif; font-size: 19.5px; color: #AEAAA4; }
+
+.block-4 { padding: 0; min-height: auto; overflow: visible; }
+.block-4::before, .block-4::after { display: none; }
+.image-wrap { width: 100%; position: relative; }
+.image-dots { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 7px; z-index: 3; }
+.image-dots span { display: block; width: 5px; height: 5px; border-radius: 50%; background: #C0BBB4; }
+.image-dots span.on { background: #868280; }
+.photo-block {
+  display: block; width: 100%; aspect-ratio: 1 / 1.22;
+  background-color: #C2BBB3;
+  background-image:
+    radial-gradient(ellipse at 65% 28%, rgba(108,94,80,0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 68%, rgba(88,76,66,0.42) 0%, transparent 48%),
+    linear-gradient(148deg, #C6BFB7 0%, #A29890 42%, #8C857E 100%);
+}
+.image-caption { font-family: 'EB Garamond', serif; font-size: 17.25px; font-style: italic; color: #AEAAA4; margin-top: 8px; padding-left: 28px; padding-bottom: 16px; }
+.img-corner { font-family: 'EB Garamond', serif; font-size: 19.5px; color: #BEBBB6; position: absolute; line-height: 1; pointer-events: none; }
+.img-tl { top: 14px; left: 14px; }
+.img-bl { bottom: 14px; left: 28px; }
+.img-br { bottom: 14px; right: 14px; }
+.img-outer { position: relative; }
+
+/* ── BADGE ── */
+.badge-container {
+  width: 100%;
+  aspect-ratio: 1 / 1.22;
+  position: relative;
+  background: transparent;
+  cursor: grab;
+  user-select: none;
+  overflow: visible;
+}
+.badge-container:active { cursor: grabbing; }
+.badge-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+}
+.badge-card {
+  position: absolute;
+  width: 225px;
+  background: #F1F1F1;
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.12);
+  overflow: hidden;
+  touch-action: none;
+  will-change: transform;
+  cursor: grab;
+}
+.badge-photo {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #C2BBB3;
+  background-image:
+    radial-gradient(ellipse at 60% 30%, rgba(108,94,80,0.5) 0%, transparent 55%),
+    linear-gradient(148deg, #C6BFB7 0%, #9A8E86 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 33px;
+  color: rgba(255,255,255,0.4);
+}
+.badge-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.badge-info {
+  padding: 18px 18px 13px;
+  border-top: 1px solid #E0DDD9;
+}
+.badge-name {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: #1A1A1A;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+.badge-title {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: #AEAAA4;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+.badge-clip {
+  width: 31px;
+  height: 22px;
+  background: #B8B4AE;
+  border-radius: 3px 3px 0 0;
+  margin: 0 auto;
+  position: relative;
+}
+.badge-clip::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 50%;
+  transform: translateX(-50%);
+  width: 13px; height: 9px;
+  border-radius: 50%;
+  background: #D4D0CB;
+}
+
+/* ── WATERMARK ── */
+.watermark-wrap {
+  position: relative; z-index: 1; width: 100%; overflow: hidden;
+  pointer-events: none; user-select: none; margin-top: 0;
+  height: clamp(220px, 36.6vw, 560px);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.7s ease 0.15s both;
+}
+.watermark-wrap svg { width: 100%; height: 100%; }
+
+/* ── PROJECTS SECTION (home) ── */
+.projects-section { width: 100%; animation: fadeIn 0.4s ease 0.1s both; }
+
+.project-row{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  border-top: none;
+cursor: pointer;
+  transition: background 0.2s;
+  padding-bottom: clamp(18px, 3.6vw, 56px); /* ~= imageHeight/10 */
+}
+.project-row:hover { background: rgba(0,0,0,0.015); }
+
+/* columns: 3 / 2 / 2 / 3 */
+.project-visual{
+  grid-column: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+}
+.project-text{
+  grid-column: 4 / span 2;
+  padding: 22px 20px 0 28px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  border-right: none;
+}
+.project-tags-col{
+  grid-column: 6 / span 2;
+  padding: 22px 20px 0 28px;
+  align-self: stretch;
+  border-right: none;
+}
+.project-desc-col{
+  grid-column: 8 / span 3;
+  padding: 22px 28px 0 28px;
+  align-self: stretch;
+}
+
+.proj-img { display: block; width: 100%; aspect-ratio: 1/1.22; position: relative; overflow: hidden; }
+.proj-img-inner { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.project-row:hover .proj-img-inner { transform: scale(0.6); }
+
+/* now description lives in the right 3 columns */
+.proj-caption { font-size: 19.5px; color: #1A1A1A; line-height: 1.55; margin: 0; }
+.project-desc-col .proj-caption { margin-top: 0; }
+
+.project-tag-item { font-size: 19.5px; line-height: 2.4; text-transform: none;
+  letter-spacing: 0.01em; display: block; }
+.project-title-line { font-size: 19.5px; font-weight: 400; color: #1A1A1A; line-height: 1.55; }
+.project-title-year { color: #AEAAA4; }
+
+/* ── PROJECT DETAIL PAGE ── */
+:root{
+  --pd-cols: 10;
+  --pd-col: calc(100vw / var(--pd-cols));
+  --pd-thumb-w: calc(var(--pd-col) * 3);
+  --pd-h0: calc(var(--pd-thumb-w) * 1.22);
+  --pd-gap: calc(var(--pd-h0) / 10);
+  --pd-h1: calc(var(--pd-h0) * 1.1);
+  --pd-h12: calc(var(--pd-h0) * 1.2);
+  --pd-h22: calc(var(--pd-h0) * 2.2);
+  --pd-h21: calc(var(--pd-h0)*2 + var(--pd-gap));
+}
+
+.detail-page{
+  width: 100%;
+  animation: fadeIn 0.3s ease both;
+}
+.detail-sidebar{ display:none; }
+.detail-content{ width:100%; }
+
+.pd-section{ width:100%; }
+.pd-section + .pd-section{ margin-top: 0; }
+
+.pd-grid{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+}
+
+.pd-span-1{ grid-column: span 1; }
+.pd-span-2{ grid-column: span 2; }
+.pd-span-3{ grid-column: span 3; }
+.pd-span-4{ grid-column: span 4; }
+.pd-span-5{ grid-column: span 5; }
+.pd-span-6{ grid-column: span 6; }
+.pd-span-7{ grid-column: span 7; }
+.pd-span-8{ grid-column: span 8; }
+.pd-span-9{ grid-column: span 9; }
+.pd-span-10{ grid-column: span 10; }
+
+.pd-img{
+  width:100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pd-h0{ height: var(--pd-h0); }
+.pd-h1{ height: var(--pd-h1); }
+.pd-h12{ height: var(--pd-h12); }
+.pd-h22{ height: var(--pd-h22); }
+.pd-h21 { height: var(--pd-h21); }
+
+.pd-text{
+  min-height: var(--pd-h0);
+  padding: 42px 44px;
+  display:flex;
+  flex-direction: column;
+}
+
+/* Typography reused from old detail page */
+.detail-label{
+  font-family: 'EB Garamond', serif;
+  font-size: 17.25px;
+  font-style: italic;
+  color: #AEAAA4;
+  margin-bottom: 30px;
+  display:block;
+}
+.detail-title{
+  font-size: 33px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 36px;
+}
+.detail-desc{
+  font-size: 19.5px;
+  line-height: 1.72;
+  color:#1A1A1A;
+  margin-bottom: 27px;
+}
+.detail-meta{
+  margin-top: auto;
+  padding-top: 48px;
+  display:flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.detail-meta-label{
+  font-family: 'EB Garamond', serif;
+  font-size: 17.25px;
+  font-style: italic;
+  color:#AEAAA4;
+  display:block;
+  margin-bottom: 3px;
+}
+.detail-meta-val{
+  font-size: 19.5px;
+  letter-spacing: 0.01em;
+}
+
+.pd-hero .detail-desc{ max-width: 52ch; }
+
+@media (max-width: 900px){
+  :root{ --pd-thumb-w: 100vw; }
+  .pd-grid{ grid-template-columns: 1fr; }
+  .pd-span-1,.pd-span-2,.pd-span-3,.pd-span-4,.pd-span-5,.pd-span-6,.pd-span-7,.pd-span-8,.pd-span-9,.pd-span-10{
+    grid-column: 1 / -1;
+  }
+  .pd-text{ padding: 28px; min-height: auto; }
+}
+
+/* ── GRADIENTS ── */
+.pg1  { background: radial-gradient(ellipse at 50% 30%, rgba(80,75,68,.6) 0%, transparent 55%), radial-gradient(ellipse at 40% 75%, rgba(60,58,52,.4) 0%, transparent 48%), linear-gradient(160deg, #C0BAB2 0%, #9C9690 40%, #888280 100%); }
+.pg2  { background-image: url('assets/media/asset_01.jpg'); background-size: cover; background-position: center; }
+.pg3  { background: radial-gradient(ellipse at 48% 28%, rgba(85,72,62,.58) 0%, transparent 52%), radial-gradient(ellipse at 55% 70%, rgba(68,58,50,.38) 0%, transparent 48%), linear-gradient(145deg, #C4B8B0 0%, #A09088 40%, #908078 100%); }
+.pg4  { background: radial-gradient(ellipse at 52% 32%, rgba(65,78,68,.55) 0%, transparent 52%), radial-gradient(ellipse at 42% 68%, rgba(52,62,54,.38) 0%, transparent 48%), linear-gradient(150deg, #B8C4BC 0%, #90A898 40%, #809080 100%); }
+.pg5  { background: radial-gradient(ellipse at 50% 30%, rgba(72,72,88,.55) 0%, transparent 52%), radial-gradient(ellipse at 48% 72%, rgba(58,58,72,.38) 0%, transparent 48%), linear-gradient(148deg, #BEBEBC 0%, #9898B0 40%, #8888A0 100%); }
+.pg6  { background: radial-gradient(ellipse at 50% 35%, rgba(85,80,65,.55) 0%, transparent 52%), radial-gradient(ellipse at 45% 70%, rgba(68,65,52,.38) 0%, transparent 48%), linear-gradient(152deg, #C4C0A8 0%, #A0A088 40%, #909078 100%); }
+.pg1b { background: radial-gradient(ellipse at 35% 40%, rgba(70,65,58,.55) 0%, transparent 55%), linear-gradient(140deg, #B8B2AA 0%, #908880 40%, #807870 100%); }
+.pg2b { background: radial-gradient(ellipse at 60% 38%, rgba(58,62,78,.5) 0%, transparent 52%), linear-gradient(160deg, #C0C4D8 0%, #A0A4C0 40%, #9094B0 100%); }
+.pg3b { background: radial-gradient(ellipse at 40% 32%, rgba(75,62,52,.52) 0%, transparent 52%), linear-gradient(140deg, #BCACA4 0%, #988880 40%, #887870 100%); }
+.pg4b { background: radial-gradient(ellipse at 55% 35%, rgba(55,68,58,.5) 0%, transparent 52%), linear-gradient(155deg, #C0CCC4 0%, #98B0A0 40%, #889890 100%); }
+.pg5b { background: radial-gradient(ellipse at 45% 32%, rgba(62,62,80,.5) 0%, transparent 52%), linear-gradient(150deg, #C8C8D4 0%, #A8A8C4 40%, #9898B4 100%); }
+.pg6b { background: radial-gradient(ellipse at 50% 38%, rgba(75,70,55,.5) 0%, transparent 52%), linear-gradient(148deg, #CCCAB0 0%, #AAAA90 40%, #9A9A80 100%); }
+.pg1c { background: radial-gradient(ellipse at 55% 45%, rgba(65,60,53,.45) 0%, transparent 50%), linear-gradient(165deg, #C8C2BA 0%, #A4A09A 40%, #94908A 100%); }
+.pg2c { background: radial-gradient(ellipse at 40% 42%, rgba(55,58,72,.45) 0%, transparent 50%), linear-gradient(145deg, #BCC0CE 0%, #9CA0B8 40%, #8C90A8 100%); }
+.pg3c { background: radial-gradient(ellipse at 52% 40%, rgba(72,58,48,.45) 0%, transparent 50%), linear-gradient(150deg, #C0B0A8 0%, #A09080 40%, #908070 100%); }
+.pg4c { background: radial-gradient(ellipse at 48% 38%, rgba(58,70,62,.45) 0%, transparent 50%), linear-gradient(155deg, #BCCAC0 0%, #9AACA0 40%, #8A9C90 100%); }
+
+.pg4d { background-image: linear-gradient(135deg, #d6d6d6 0%, #bfbfbf 100%); }
+.pg4e { background-image: linear-gradient(135deg, #d0d0d0 0%, #c2c2c2 100%); }
+.pg4f { background-image: linear-gradient(135deg, #d8d8d8 0%, #c8c8c8 100%); }
+.pg4g { background-image: linear-gradient(135deg, #d3d3d3 0%, #bebebe 100%); }
+.pg4h { background-image: linear-gradient(135deg, #bcbcbc 0%, #9f9f9f 100%); }
+.pg4i { background-image: linear-gradient(135deg, #cfcfcf 0%, #b3b3b3 100%); }
+.pg4j { background-image: linear-gradient(135deg, #cdcdcd 0%, #b0b0b0 100%); }
+.pg5c { background: radial-gradient(ellipse at 52% 42%, rgba(60,60,78,.45) 0%, transparent 50%), linear-gradient(148deg, #C4C4D0 0%, #A4A4C0 40%, #9494B0 100%); }
+.pg6c { background: radial-gradient(ellipse at 50% 40%, rgba(72,68,54,.45) 0%, transparent 50%), linear-gradient(150deg, #CAC8AE 0%, #A8A890 40%, #989880 100%); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── LINK FIXES ── */
+.proj-link{
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.proj-link:hover{ color:#AEAAA4; }
+
+/* ── BADGE: RESTORE ORIGINAL LOOK ── */
+.badge-photo{ font-size:22px !important; }
+.badge-name{
+  font-size:14px !important;
+  text-transform: uppercase !important;
+}
+.badge-title{ font-size:12px !important; }
+
+
+
+/* ── PROJECT HERO (match home grid) ── */
+.pd-hero-grid .pd-text{
+  min-height: var(--pd-h0);
+  padding: 28px 24px 40px 28px;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.pd-hero-desc .ph-body{
+  font-size: inherit;
+  line-height: 1.58;
+  margin-bottom: 18px;
+}
+.pd-hero-title .ph-title{
+  font-size: inherit;
+  line-height: 1.55;
+}
+.ph-tags{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ph-tags li{
+  font-size: inherit;
+  line-height: 2.4;
+  letter-spacing: 0.01em;
+}
+.pd-hero{ padding: 0; margin: 0; }
+
+/* ───────── frames (placeholders) ───────── */
+.pd-frame{
+  background:#cfcfcf;
+  border:1px solid #111;
+  box-sizing:border-box;
+  height: var(--pd-h0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 24px;
+  overflow:hidden;
+}
+.pd-frame-label{
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color:#111;
+}
+.pd-h1-2{ height: calc(var(--pd-h0) * 1.2); }
+
+.pd-follow-top{
+  grid-template-rows: var(--pd-h0) var(--pd-h1);
+}
+.pd-follow-top .pd-frame{ height:100%; }
+
+
+/* === p2 единая сетка hero + frames без зазоров === */
+#page-p2 .pd-master-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+}
+#page-p2 .pd-master-grid .pd-text {
+  min-height: var(--pd-h0);
+}
+/* блок 3: высота 2.1× pd-h0 */
+#page-p2 .pf-3 { height: calc(var(--pd-h0) * 2.1); }
+/* блок 4: высота + 2/10 высоты = 1.2× */
+#page-p2 .pf-4 { height: calc(var(--pd-h0) * 1.2); }
+/* блоки 5, 6: высота + 1/10 = 1.1× */
+#page-p2 .pf-5,
+#page-p2 .pf-6 { height: calc(var(--pd-h0) * 1.1); }
+/* блок 7: высота + 1/10 = 1.1× */
+#page-p2 .pf-7 { height: calc(var(--pd-h0) * 1.1); }
+/* блоки 8, 9, 10: высота + 1/10 = 1.1× */
+#page-p2 .pf-8,
+#page-p2 .pf-9,
+#page-p2 .pf-10 { height: calc(var(--pd-h0) * 1.1); }
+
+
+/* === uppercase all text on p2 === */
+#page-p2 { text-transform: uppercase; }
+
+
+/* === remove frame borders === */
+#page-p2 .pd-frame { border: none; }
+
+/* spacer и старые фреймы — убираем (больше не нужны) */
+#page-p2 .pf-spacer { display: none; }
+#page-p2 .pd-frames-grid { display: none; }
+
+
+.cover-img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#fff;transform: scale(1.03);}
+
+/* injected: media in cover blocks */
+.cover-b2{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#fff;}
+.cover-b3{width:100%;height:100%;object-fit:cover;display:block;}
+
+.cover-b4{object-fit: contain; object-position: center; background:#fff; }
+
+/* override: ensure block 4 image NEVER crops */
+.pd-frame .cover-b4{
+  width:100% !important;
+  height:100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: scale(1.3) !important;
+  display:block !important;
+  background:#fff !important;
+}
+
+/* injected: remove frame outlines on COVER page */
+#page-p5 .pd-frame{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* injected: last frame image */
+.cover-last{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position:center;
+  display:block;
+}
+
+/* injected: frames 8/9 media + last frame no fill */
+.cover-f8, .cover-f9{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+#page-p5 .pd-frame:last-of-type{
+  background: transparent !important;
+}
+
+/* injected: frame 7 image + frame 8 scale */
+.cover-f7{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+.cover-f8scale{
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+/* injected: frame 5 gif */
+.cover-f5gif{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+
+/* injected: frame 9 image */
+.cover-f9{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+
+/* injected: frame 5 video */
+.cover-f5vid{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+.cover-f5vid::-webkit-media-controls{display:none !important;}
+</style>
+</head>
+<body>
+<!-- ══════ HOME ══════ -->
+<div class="page" id="page-home">
+<div class="info-area">
+<div class="block block-1">
+<p class="bio-name">Alex Mora (b.1989)<br/>is a senior multidisciplinary<br/>designer based in Barcelona,<br/>working across brand identity,<br/>publishing, fashion, art and music.</p>
+<p class="bio-edu">She holds a BA in Graphic Design +<br/>MA in Communication Design<br/>from Central Saint Martins (London).</p>
+<p class="bio-practice">Her practice explores visual systems,<br/>narratives and cultural identity,<br/>creating precise scenarios<br/>through different media and<br/>visual languages.</p>
+<div class="block-1-spacer"></div>
+</div>
+<div class="block block-2">
+<ul class="work-list">
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;">Следуй за мной<span class="work-year">, 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В ритме дней<span class="work-year">, 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;">AI Generations<span class="work-year">, 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER<span class="work-year">, 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p6');return false;">Зеркало<span class="work-year">, 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;">Underdog постеры<span class="work-year">, 2024</span></a></li>
+</ul>
+</div>
+<div class="block block-3 block-mid">
+<ul class="disc-list">
+<li>Brand Identity</li>
+<li>Art Direction</li>
+<li>Editorial Design</li>
+<li>Creative Direction</li>
+</ul>
+</div>
+<div class="block block-4">
+<div class="badge-container" id="badgeContainer">
+<canvas class="badge-canvas" id="badgeCanvas"></canvas>
+<div class="badge-card" id="badgeCard">
+<div class="badge-clip"></div>
+<div class="badge-photo" id="badgePhoto">
+<span style="font-size:20px;opacity:0.3">+</span>
+</div>
+<div class="badge-info">
+<div class="badge-name">Alex Mora</div>
+<div class="badge-title">Senior Designer, Barcelona</div>
+</div>
+</div>
+</div>
+<p class="image-caption">{Selected Work, 2024 }</p>
+</div>
+</div>
+<div class="watermark-wrap">
+<svg aria-hidden="true" height="auto" viewbox="0 0 1456 320" width="100%" xmlns="http://www.w3.org/2000/svg">
+<text fill="#D6D3CF" font-family="Georgia,'Times New Roman',serif" font-size="465" font-style="italic" font-weight="400" letter-spacing="-6" opacity="0.45" text-anchor="middle" x="50%" y="288">Mora</text>
+</svg>
+</div>
+<section class="projects-section">
+<div class="project-row" onclick="showProject('p2')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg1"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p2');return false;"><span class="project-title-line">Следуй за мной<span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item">Brand Identity</span>
+<span class="project-tag-item">Art Direction</span>
+</div><div class="project-desc-col"><p class="proj-caption">Визуальная система для музыкального проекта. Идентичность, основанная на движении и ритме — разработана для физических и цифровых носителей.</p></div>
+</div>
+<div class="project-row" onclick="showProject('p3')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg2"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p3');return false;"><span class="project-title-line">В ритме дней<span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item">Editorial Design</span>
+<span class="project-tag-item">Art Direction</span>
+</div><div class="project-desc-col"><p class="proj-caption">Редакционный проект об архитектуре повседневного времени. Art Direction &amp; Editorial Design.</p></div>
+</div>
+<div class="project-row" onclick="showProject('p4')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg3"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p4');return false;"><span class="project-title-line">AI Generations<span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item">Creative Direction</span>
+<span class="project-tag-item">Graphic Design</span>
+</div><div class="project-desc-col"><p class="proj-caption">Исследование визуального языка ИИ в контексте современной графики и арт-дирекции.</p></div>
+</div>
+<div class="project-row" onclick="showProject('p5')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg4"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p5');return false;"><span class="project-title-line">COVER<span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item">Graphic Design</span>
+<span class="project-tag-item">Printed Matter</span>
+</div><div class="project-desc-col"><p class="proj-caption">Серия обложек для независимого издания. Типографика и фотография как единая система.</p></div>
+</div>
+<div class="project-row" onclick="showProject('p6')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg5"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p6');return false;"><span class="project-title-line">Зеркало<span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item">Creative Direction</span>
+<span class="project-tag-item">Art Direction</span>
+</div><div class="project-desc-col"><p class="proj-caption">Creative direction для fashion-съёмки. Исследование отражения как метафоры идентичности и восприятия.</p></div>
+</div>
+<div class="project-row" onclick="showProject('p7')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg6"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p7');return false;"><span class="project-title-line">Underdog постеры<span class="project-title-year">, 2024</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item">Graphic Design</span>
+<span class="project-tag-item">Printed Matter</span>
+</div><div class="project-desc-col"><p class="proj-caption">Серия афиш для независимых культурных событий. Ручная типографика и коллаж.</p></div>
+</div>
+</section>
+</div>
+<!-- ════
+  <!-- Layout frames (do not touch the header image above) -->
+<div class="page active" data-project="p1" id="page-p2">
+<nav class="site-nav">
+<div class="nav-name">ANASTASIA CHERNIKOVA</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">HOME PAGE</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero">
+<div class="pd-grid pd-master-grid">
+<!-- ROW 1: hero текст (3+2+2 колонки) + блок 1 картинка (3 колонки, высота pd-h0) -->
+<div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;">
+<p class="ph-body">«СЛЕДУЙ ЗА МНОЙ» — КАРМАННАЯ КНИГА-ИССЛЕДОВАНИЕ О ТОМ, КАК СОФИ КАЛЬ СОБИРАЕТ ПОРТРЕТЫ ДРУГИХ ЛЮДЕЙ ЧЕРЕЗ СЛЕДЫ: ОСТАВЛЕННЫЕ ВЕЩИ, ДВИЖЕНИЯ ПО ГОРОДУ, ЧУЖИЕ СВИДЕТЕЛЬСТВА.</p>
+</div>
+<div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<div class="ph-title">Следуй за мной<span class="work-year">, 2025</span></div>
+</div>
+<div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+<ul class="ph-tags">
+<li>Brand Identity</li>
+<li>Art Direction</li>
+</ul>
+</div>
+<!-- блок 1 (серый) — правые 3 колонки, row 1, высота pd-h0 -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;"><img src="assets/media/asset_02.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 2: пустота 7 колонок + блок 2 (красный/серый) — 3 колонки, высота pd-h1 -->
+<!-- пустота слева -->
+<div style="grid-column: 1 / span 7; grid-row: 2;"></div>
+<!-- блок 2 — правые 3 колонки, row 2, высота pd-h1 -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 2; height: var(--pd-h1); padding: 0; overflow: hidden;"><img src="assets/media/asset_03.png" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+</div>
+<!-- ROW 3: блок 3 — 7 колонок, высота 2.1× pd-h0 -->
+<div class="pd-frame pd-gray pf-3" style="grid-column: 1 / span 7; grid-row: 3; padding: 0; overflow: hidden;">
+<img src="assets/media/asset_04.gif" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+</div>
+<!-- пустота справа -->
+<div style="grid-column: 8 / span 3; grid-row: 3;"></div>
+<!-- ROW 4+5: блок 4 — 5 пустых + 5 колонок (6–10), высота 1.2× -->
+<div style="grid-column: 1 / span 5; grid-row: 4;"></div>
+<div class="pd-frame pd-gray pf-4" style="grid-column: 6 / span 5; grid-row: 4; padding:0; overflow:hidden;"><img src="assets/media/asset_05.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 5: блок 5 (1–5) и блок 6 (6–10), высота 1.1× каждый -->
+<div class="pd-frame pd-gray pf-5" style="grid-column: 1 / span 5; grid-row: 5; padding:0; overflow:hidden;"><img src="assets/media/asset_06.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-6" style="grid-column: 6 / span 5; grid-row: 5; padding:0; overflow:hidden;"><img src="assets/media/asset_07.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 6: блок 7 — 1–7, высота 1.1× -->
+<div class="pd-frame pd-gray pf-7" style="grid-column: 1 / span 7; grid-row: 6; padding:0; overflow:hidden;"><img src="assets/media/asset_08.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 7: блоки 8 (4 кол), 9 (3 кол), 10 (3 кол), высота 1.1× каждый -->
+<div class="pd-frame pd-gray pf-8" style="grid-column: 1 / span 4; grid-row: 7; padding:0; overflow:hidden;"><img src="assets/media/asset_09.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-9" style="grid-column: 5 / span 3; grid-row: 7; padding:0; overflow:hidden;"><img src="assets/media/asset_10.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-10" style="grid-column: 8 / span 3; grid-row: 7; padding:0; overflow:hidden;"><img src="assets/media/asset_11.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page" id="page-p3">
+<nav class="site-nav">
+<div class="nav-name">Anastasia Chernikova</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">Home page</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p4');return false;">AI Generations</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc"><p class="ph-body">Редакционный проект об архитектуре повседневного времени. Исследование того, как ритм структурирует нашу жизнь — через типографику, ритм вёрстки и выбор образов.</p><p class="ph-body">Издание вышло тиражом 300 экземпляров, ризография, формат A4. В проекте участвовали три фотографа и два текстовых автора.</p></div><div class="pd-text pd-span-2 pd-hero-title"><div class="ph-title">В ритме дней<span class="work-year">, 2025</span></div></div><div class="pd-text pd-span-2 pd-hero-tags"><ul class="ph-tags"><li>Editorial Design</li><li>Art Direction</li></ul></div><div class="pd-img pd-span-3 pd-h0 pg2 pd-hero-img" style="background-image:url('assets/media/asset_12.png');"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-5 pd-h0" style="background: url('assets/media/asset_13.png') left bottom/contain no-repeat;"></div>
+<div class="pd-span-5"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg2b" style="background: url('assets/media/asset_14.png') center/cover no-repeat;"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-span-3"></div>
+<div class="pd-img pd-span-7 pd-h22 pg2c" style="background: url('assets/media/asset_15.png') center/cover no-repeat;"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-3 pd-h12 pg2" data-missing-image="third-image" style="background: url('assets/media/asset_16.png') center/cover no-repeat;"></div>
+<div class="pd-span-7"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h22 pg2b" style="background: url('assets/media/asset_17.png') center/cover no-repeat;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 03 ══════ -->
+<div class="page" id="page-p4">
+<nav class="site-nav">
+<div class="nav-name">Anastasia Chernikova</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">Home page</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p5');return false;">COVER</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc"><p class="ph-body">Исследование визуального языка искусственного интеллекта в контексте современной графики и арт-дирекции. Кто является автором, когда инструмент становится соавтором?</p><p class="ph-body">Серия из 24 работ, созданных в диалоге с генеративными системами. Каждая сопровождается текстом о процессе и намерении.</p></div><div class="pd-text pd-span-2 pd-hero-title"><div class="ph-title">AI Generations<span class="work-year">, 2025</span></div></div><div class="pd-text pd-span-2 pd-hero-tags"><ul class="ph-tags"><li>Creative Direction</li><li>Graphic Design</li></ul></div><div class="pd-img pd-span-3 pd-h0 pg3 pd-hero-img"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg3b"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-span-3"></div>
+<div class="pd-img pd-span-7 pd-h22 pg3c"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-3 pd-h12 pg3"></div>
+<div class="pd-span-7"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h22 pg3b"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 04 ══════ -->
+<div class="page" id="page-p5">
+<nav class="site-nav">
+<div class="nav-name">Anastasia Chernikova</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">Home page</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p6');return false;">Зеркало</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero">
+<div class="pd-grid pd-master-grid">
+<!-- ROW 1: hero текст + блок 1 (как на странице "Следуй за мной") -->
+<div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;">
+<p class="ph-body">Alex Mora (b. 1989) is a senior multidisciplinary designer based in Barcelona, working across brand identity, publishing, fashion, art and music. She holds a BA in Graphic Design + MA in Communication Design from Central Saint Martins (London). Her practice explores visual systems, narratives and cultural identity, creating precise scenarios through different media and visual languages.</p>
+</div>
+<div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<div class="ph-title">Cover<span class="work-year">, 2025</span></div>
+</div>
+<div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+<ul class="ph-tags">
+<li>Art Direction</li>
+<li>Brand Identity</li>
+<li>Campaign</li>
+<li>Socials</li>
+<li>Packaging</li>
+</ul>
+</div>
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;">
+<div class="pd-img pg4" style="width:100%; height:100%;">
+<img alt="COVER" class="pd-media cover-img" decoding="async" loading="eager" src="assets/media/asset_18.png"/>
+</div>
+</div>
+<!-- ROW 2: блок под заблюренной картинкой (5 колонок, высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 5; grid-row: 2; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+<img alt="" class="pd-media cover-b2" decoding="async" loading="lazy" src="assets/media/asset_19.png"/>
+</div>
+<!-- ROW 3: блок 3 (как на схеме) — под блоком 2 и рядом с блоком 4 -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 7; grid-row: 3; height: calc(var(--pd-h0) * 0.5); width: 35.714%; align-self: center; justify-self: center; padding:0; overflow:hidden;">
+<img alt="" class="pd-media cover-b3" decoding="sync" loading="eager" src="assets/media/asset_20.gif"/>
+</div>
+<!-- ROW 3: правый блок (3 колонки, высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 3; height: calc(var(--pd-h0) * 1.1);">
+<img alt="" class="pd-media cover-b4" decoding="async" loading="lazy" src="assets/media/asset_21.png"/>
+</div>
+<!-- ROW 4: большой блок (10 колонок, высота = 2 * высоты картинки + 1/10) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 10; grid-row: 4; height: calc(var(--pd-h0) * 2.1);; padding:0; overflow:hidden;"><video autoplay="" class="pd-media cover-f5vid" loop="" muted="" playsinline="" preload="auto" webkit-playsinline=""><source src="assets/media/asset_22.mp4" type="video/mp4"/></video></div>
+<!-- ROW 5: нижний правый блок (3 колонки, высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 5; height: calc(var(--pd-h0) * 1.1);"></div>
+<!-- ROW 6: блок 7 колонок (высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 7; grid-row: 6; height: calc(var(--pd-h0) * 1.1);; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f7" decoding="async" loading="lazy" src="assets/media/asset_23.png"/></div>
+<!-- ROW 7: два блока по 5 колонок (высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 5; grid-row: 7; height: calc(var(--pd-h0) * 1.1);; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f8 cover-f8scale" decoding="async" loading="lazy" src="assets/media/asset_24.png"/></div>
+<div class="pd-frame pd-gray" style="grid-column: 6 / span 5; grid-row: 7; height: calc(var(--pd-h0) * 1.1);; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f9" decoding="async" loading="lazy" src="assets/media/asset_25.png"/></div>
+<!-- ROW 8: левый блок 3 колонки (высота = 1.2 * высоты картинки) -->
+<div class="pd-frame" style="grid-column: 1 / span 3; grid-row: 8; height: calc(var(--pd-h0) * 1.2);">
+<img alt="" class="pd-media cover-last" decoding="async" loading="lazy" src="assets/media/asset_26.png"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page" id="page-p6">
+<nav class="site-nav">
+<div class="nav-name">Anastasia Chernikova</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">Home page</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p7');return false;">Underdog постеры</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc"><p class="ph-body">Creative direction для fashion-съёмки. Исследование отражения как метафоры идентичности, восприятия и двойственности. Работа с понятием «другого себя» через визуальный язык моды.</p><p class="ph-body">Съёмка в двух локациях — покинутом театре и студии с зеркальным полом. Фотограф: Nina S. Стилист: Maria K.</p></div><div class="pd-text pd-span-2 pd-hero-title"><div class="ph-title">Зеркало<span class="work-year">, 2025</span></div></div><div class="pd-text pd-span-2 pd-hero-tags"><ul class="ph-tags"><li>Creative Direction</li><li>Art Direction</li></ul></div><div class="pd-img pd-span-3 pd-h0 pg5 pd-hero-img"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg5b"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-span-3"></div>
+<div class="pd-img pd-span-7 pd-h22 pg5c"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-3 pd-h12 pg5"></div>
+<div class="pd-span-7"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h22 pg5b"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 06 ══════ -->
+<div class="page" id="page-p7">
+<nav class="site-nav">
+<div class="nav-name">Anastasia Chernikova</div>
+<div class="nav-home"><a href="#" onclick="showHome();return false;">Home page</a></div>
+<div class="nav-next"><a href="#" onclick="showProject('p6');return false;">Зеркало</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc"><p class="ph-body">Серия афиш для независимых культурных событий. Ручная работа с типографикой и коллажем — каждый постер уникален и создавался с нуля под конкретное событие.</p><p class="ph-body">12 постеров для концертов, выставок и перформансов. Техника: цифровая печать + ручная доработка. Форматы A1 и B1.</p></div><div class="pd-text pd-span-2 pd-hero-title"><div class="ph-title">Underdog постеры<span class="work-year">, 2024</span></div></div><div class="pd-text pd-span-2 pd-hero-tags"><ul class="ph-tags"><li>Graphic Design</li><li>Printed Matter</li></ul></div><div class="pd-img pd-span-3 pd-h0 pg6 pd-hero-img"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg6b"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-span-3"></div>
+<div class="pd-img pd-span-7 pd-h22 pg6"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-3 pd-h12 pg6c"></div>
+<div class="pd-span-7"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h22 pg6"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function showProject(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showHome() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-home');
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Badge physics + rope
+  const container = document.getElementById('badgeContainer');
+  const canvas    = document.getElementById('badgeCanvas');
+  const card      = document.getElementById('badgeCard');
+  if (!container || !canvas || !card) return;
+
+  const ctx       = canvas.getContext('2d');
+  const CARD_W  = 225;
+  const L       = 130;
+  const MAX_ANG = 0.52; // ~30 degrees max swing
+
+  let angle = 0, vel = 0;
+  let W, H, ax, ay;
+
+  let dragging = false;
+  let freeX, freeY, pvx, pvy, dox, doy;
+
+  function setup() {
+    W = container.offsetWidth;
+    H = container.offsetHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+    ax = W / 2;
+    ay = 0;
+  }
+
+  function cardCenter() {
+    if (dragging) return [freeX, freeY];
+    return [ax + Math.sin(angle) * L, ay + Math.cos(angle) * L];
+  }
+
+  function tick() {
+    if (!dragging) {
+      vel += -0.003 * Math.sin(angle);
+      vel *= 0.92;
+      angle += vel;
+      if (angle >  MAX_ANG) { angle =  MAX_ANG; vel = -Math.abs(vel) * 0.3; }
+      if (angle < -MAX_ANG) { angle = -MAX_ANG; vel =  Math.abs(vel) * 0.3; }
+    }
+
+    const [cx, cy] = cardCenter();
+    card.style.left = (cx - CARD_W / 2) + 'px';
+    card.style.top  = cy + 'px';
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    const rx = cx, ry = cy + 8;
+    const mx = (ax + rx) / 2;
+    const my = (ay + ry) / 2 + 14;
+    ctx.quadraticCurveTo(mx, my, rx, ry);
+    ctx.strokeStyle = '#8C847C';
+    ctx.lineWidth   = 4;
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+
+    requestAnimationFrame(tick);
+  }
+
+  function getXY(e) {
+    const r = container.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return [s.clientX - r.left, s.clientY - r.top];
+  }
+
+  function isOnCard(mx, my) {
+    const [cx, cy] = cardCenter();
+    const px = cx - CARD_W / 2, py = cy;
+    const ch = card.offsetHeight || 220;
+    return mx >= px && mx <= px + CARD_W && my >= py && my <= py + ch;
+  }
+
+  function onDown(e) {
+    const [mx, my] = getXY(e);
+    if (!isOnCard(mx, my)) return;
+    dragging = true;
+    const [cx, cy] = cardCenter();
+    freeX = cx; freeY = cy;
+    pvx = cx; pvy = cy;
+    dox = mx - cx; doy = my - cy;
+    card.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    const [mx, my] = getXY(e);
+    pvx = freeX; pvy = freeY;
+    freeX = mx - dox;
+    const ch = card.offsetHeight || 220;
+    freeY = Math.max(10, Math.min(H - ch, my - doy));
+
+    const da = Math.atan2(freeX - ax, Math.max(freeY - ay, 1));
+    if (Math.abs(da) > MAX_ANG) {
+      const clampedA = Math.sign(da) * MAX_ANG;
+      const dist = Math.sqrt((freeX-ax)**2 + (freeY-ay)**2);
+      freeX = ax + Math.sin(clampedA) * dist;
+    }
+    e.preventDefault();
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    card.style.cursor = 'grab';
+    const dx = freeX - ax, dy = freeY - ay;
+    angle = Math.atan2(dx, Math.max(dy, 1));
+    angle = Math.max(-MAX_ANG, Math.min(MAX_ANG, angle));
+    vel = ((freeX - pvx) * Math.cos(angle) - (freeY - pvy) * Math.sin(angle)) / L * 0.4;
+  }
+
+  container.addEventListener('mousedown', onDown);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  container.addEventListener('touchstart', onDown, { passive: false });
+  window.addEventListener('touchmove', onMove, { passive: false });
+  window.addEventListener('touchend', onUp);
+
+  // Photo upload
+  const photoDiv = document.getElementById('badgePhoto');
+  if (photoDiv) {
+    const fi = document.createElement('input');
+    fi.type = 'file';
+    fi.accept = 'image/*';
+    fi.style.display = 'none';
+    document.body.appendChild(fi);
+    photoDiv.style.cursor = 'pointer';
+    photoDiv.addEventListener('mousedown', e => e.stopPropagation());
+    photoDiv.addEventListener('click', e => { fi.click(); e.stopPropagation(); });
+    fi.addEventListener('change', () => {
+      const f = fi.files && fi.files[0];
+      if (!f) return;
+      photoDiv.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(f);
+      photoDiv.appendChild(img);
+    });
+  }
+
+  setup();
+  tick();
+  if (window.ResizeObserver) new ResizeObserver(setup).observe(container);
+  else window.addEventListener('resize', setup);
+});
+</script>
+<script>
+/* Keep block #3 height tied to the real rendered height of block #1 (ideal size) in the header stack. */
+document.addEventListener('DOMContentLoaded', () => {
+  const page = document.getElementById('page-p2');
+  if (!page) return;
+  const grid = page.querySelector('.pd-frames-grid');
+  const base = page.querySelector('.pd-follow-top .pd-frame.pd-h0') || page.querySelector('.pd-follow-top .pd-frame');
+  if (!grid || !base) return;
+
+  const apply = () => {
+    const h = base.getBoundingClientRect().height;
+    if (h && h > 0) grid.style.setProperty('--pfH', `${h}px`);
+  };
+
+  apply();
+  window.addEventListener('resize', apply);
+  if (window.ResizeObserver) new ResizeObserver(apply).observe(base);
+});
+</script>
+<script>
+(function kickGif(){
+  function run(){
+    var img = document.querySelector('.cover-b3');
+    if(!img) return;
+    var s = img.getAttribute('src');
+    // force reload once to ensure animation starts in some browsers
+    img.setAttribute('src','');
+    img.offsetHeight; // reflow
+    img.setAttribute('src', s);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const img = document.querySelector('.cover-b4');
+  if(!img) return;
+  const frame = img.closest('.pd-frame');
+  if(frame) frame.style.overflow = 'hidden';
+});
+</script>
+</div></body>
+</html>
