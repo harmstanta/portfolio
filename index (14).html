@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Anastasia Chernikova Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-size: 17px !important; line-height: 25px !important; }
+html, body {
+  width: 100%; background: #F1F1F1; color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 17px !important; line-height: 25px !important; font-weight: 400;
+  scrollbar-gutter: stable;
+}
+
+/* ── PAGE SYSTEM ── */
+
+/* Roboto Mono for home page content (excluding nav) */
+#page-home *:not(.site-nav):not(.site-nav *) {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+}
+#page-p2 *:not(.site-nav):not(.site-nav *),
+#page-p3 *:not(.site-nav):not(.site-nav *),
+#page-p4 *:not(.site-nav):not(.site-nav *),
+#page-p5 *:not(.site-nav):not(.site-nav *),
+#page-p6 *:not(.site-nav):not(.site-nav *),
+#page-p7 *:not(.site-nav):not(.site-nav *) {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+}
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── GLOBAL NAV (project pages) ── */
+.site-nav{
+  position: sticky; top: 0; z-index: 200;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  background: #F1F1F1;
+  border-bottom: none;
+  box-sizing: border-box;
+}
+.nav-proj-list { list-style: none; margin: 0; padding: 0; }
+.nav-proj-list li a { color: #1A1A1A; text-decoration: none; display: block; padding: 0; transition: background 0.14s; line-height: 13px !important; }
+.nav-proj-list li a:hover { background: #FFFFFF; }
+.nav-proj-list li a.nav-current { background: #FFFFFF; }
+
+.proj-index-list { list-style: none; margin: 0; padding: 0; }
+.proj-index-list li { line-height: 25px !important; color: #1A1A1A; }
+.proj-index-list .work-year { font-family: 'Arial Narrow', Arial, sans-serif !important; font-style: normal; color: #AEAAA4; }
+.proj-index-current { background: #FFFFFF; padding: 0; display: block; }
+
+.nav-cell{ padding: 0; font-size: 13px; color: #1A1A1A; }
+.nav-cell:not(:last-child){ border-right: none; }
+.nav-name{ grid-column: 1 / span 3; padding-left: 28px; }
+.nav-home{ grid-column: 4 / span 2; padding-left: 28px; }
+.nav-next{ grid-column: 8 / span 3; padding-left: 28px; }
+.nav-skills{ grid-column: 6 / span 2; padding-left: 28px; }
+.site-nav a{
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  text-decoration: none;
+  transition: background 0.14s, color 0.14s;
+  padding: 0 4px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.site-nav a:hover{ background: #FFFFFF; color: #1A1A1A; opacity: 1; }
+.nav-next a{ color: #1A1A1A; }
+.site-nav-spacer {
+  height: 57px;
+  width: 100%;
+}
+/* ── HOME INFO BLOCK ── */
+.info-area {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  animation: fadeIn 0.4s ease both;
+}
+
+
+/* ── 10-COLUMN LAYOUT (home + nav + projects) ── */
+.info-area > .block-1 { grid-column: 1 / span 3; position: relative; }
+.info-area > .block-2 { grid-column: 4 / span 2; }
+.info-area > .block-3 { grid-column: 6 / span 2; }
+.info-area > .block-4 { grid-column: 8 / span 3; }
+
+/* nav cells: 3 / 2 / 2 / 3 */
+.site-nav > .nav-cell:nth-child(1) { grid-column: 1 / span 3; }
+.site-nav > .nav-cell:nth-child(2) { grid-column: 4 / span 2; }
+.site-nav > .nav-cell:nth-child(3) { grid-column: 6 / span 2; }
+.site-nav > .nav-cell:nth-child(4) { grid-column: 8 / span 3; }
+
+/* projects rows: align to 10 columns; last 3 columns intentionally empty */
+.block {
+  position: relative; padding: 28px 24px 40px 28px;
+  display: flex; flex-direction: column;
+}
+.block::before, .block::after {
+  font-family: 'EB Garamond', serif; font-size: 17px !important;
+  color: #BEBBB6; position: absolute; line-height: 25px !important; pointer-events: none;
+  z-index: 1;
+}
+.block::before { content: ''; }
+.block::after  { content: ''; }
+.block-mid::after { content: ''; }
+
+.bio-list, .work-list, .disc-list {
+  padding: 0;
+}
+
+.bio-name, .bio-edu, .bio-practice { font-size: 17px !important; line-height: 25px !important; }
+.bio-gap { margin-bottom: 25px !important; }
+.bio-list { list-style: none; margin: 0; padding: 0; }
+.block-1-spacer { flex: 1; min-height: 0; }
+.contacts-wrap { margin-top: 0; position: absolute; top: calc(50% + 40px); left: 28px; right: 0; padding: 0 0 12px 0; }
+
+.disc-list { list-style: none; }
+.disc-list li { font-size: 17px !important; line-height: 25px !important; text-transform: none;
+  letter-spacing: 0.01em; }
+
+.work-list { list-style: none; margin: 0; padding: 0; }
+.work-list li { font-size: 17px !important; line-height: 13px !important; cursor: pointer; transition: background 0.14s, color 0.14s; user-select: none; padding: 0; }
+.work-list li:hover { background: #FFFFFF; color: #1A1A1A; }
+.work-year { font-size: 17px !important; color: #AEAAA4; }
+
+.block-4 { padding: 0; min-height: auto; overflow: visible; }
+.block-4::before, .block-4::after { display: none; }
+.image-wrap { width: 100%; position: relative; }
+.image-dots { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 7px; z-index: 3; }
+.image-dots span { display: block; width: 5px; height: 5px; border-radius: 50%; background: #C0BBB4; }
+.image-dots span.on { background: #868280; }
+.photo-block {
+  display: block; width: 100%; aspect-ratio: 1 / 1.22;
+  background-color: #C2BBB3;
+  background-image:
+    radial-gradient(ellipse at 65% 28%, rgba(108,94,80,0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 68%, rgba(88,76,66,0.42) 0%, transparent 48%),
+    linear-gradient(148deg, #C6BFB7 0%, #A29890 42%, #8C857E 100%);
+}
+.image-caption { font-family: 'EB Garamond', serif; font-size: 17px !important; font-style: italic; color: #AEAAA4; margin-top: 8px; padding-left: 28px; padding-bottom: 16px; }
+.img-corner { font-family: 'EB Garamond', serif; font-size: 17px !important; color: #BEBBB6; position: absolute; line-height: 25px !important; pointer-events: none; }
+.img-tl { top: 14px; left: 14px; }
+.img-bl { bottom: 14px; left: 28px; }
+.img-br { bottom: 14px; right: 14px; }
+.img-outer { position: relative; }
+
+/* ── BADGE ── */
+.badge-container {
+  width: 100%;
+  aspect-ratio: 1 / 1.22;
+  position: relative;
+  background: transparent;
+  cursor: grab;
+  user-select: none;
+  overflow: visible;
+}
+.badge-container:active { cursor: grabbing; }
+.badge-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+}
+.badge-card {
+  position: absolute;
+  width: 225px;
+  background: #F1F1F1;
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.12);
+  overflow: hidden;
+  touch-action: none;
+  will-change: transform;
+  cursor: grab;
+}
+.badge-photo {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #C2BBB3;
+  background-image:
+    radial-gradient(ellipse at 60% 30%, rgba(108,94,80,0.5) 0%, transparent 55%),
+    linear-gradient(148deg, #C6BFB7 0%, #9A8E86 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px !important;
+  color: rgba(255,255,255,0.4);
+}
+.badge-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.badge-info {
+  padding: 18px 18px 13px;
+  border-top: 1px solid #E0DDD9;
+}
+.badge-name {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 17px !important;
+  font-weight: 400;
+  color: #1A1A1A;
+  text-transform: none;
+  letter-spacing: 0.06em;
+  line-height: 25px !important;
+}
+.badge-title {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 17px !important;
+  color: #AEAAA4;
+  margin-top: 2px;
+  line-height: 25px !important;
+}
+.badge-clip {
+  width: 31px;
+  height: 22px;
+  background: #B8B4AE;
+  border-radius: 3px 3px 0 0;
+  margin: 0 auto;
+  position: relative;
+}
+.badge-clip::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 50%;
+  transform: translateX(-50%);
+  width: 13px; height: 9px;
+  border-radius: 50%;
+  background: #D4D0CB;
+}
+
+/* ── WATERMARK ── */
+.watermark-wrap {
+  position: relative; z-index: 1; width: 100%; overflow: hidden;
+  pointer-events: none; user-select: none; margin-top: 0;
+  height: clamp(220px, 36.6vw, 560px);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.7s ease 0.15s both;
+}
+.watermark-wrap svg { width: 100%; height: 100%; }
+
+/* ── PROJECTS SECTION (home) ── */
+.projects-section { width: 100%; animation: fadeIn 0.4s ease 0.1s both; }
+
+.project-row{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  border-top: none;
+cursor: pointer;
+  transition: background 0.2s;
+  padding-bottom: clamp(18px, 3.6vw, 56px); /* ~= imageHeight/10 */
+}
+.project-row:hover { }
+
+/* columns: 3 / 2 / 2 / 3 */
+.project-visual{
+  grid-column: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+}
+.project-text{
+  grid-column: 4 / span 2;
+  padding: 22px 20px 0 28px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  border-right: none;
+}
+.project-tags-col{
+  grid-column: 6 / span 2;
+  padding: 22px 20px 0 28px;
+  align-self: stretch;
+  border-right: none;
+}
+.project-desc-col{
+  grid-column: 8 / span 3;
+  padding: 22px 28px 0 28px;
+  align-self: stretch;
+}
+
+.proj-img { display: block; width: 100%; aspect-ratio: 1/1.22; position: relative; overflow: hidden; }
+.proj-img-inner { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.project-row:hover .proj-img-inner { transform: none; }
+
+/* now description lives in the right 3 columns */
+.proj-caption { font-size: 17px !important; color: #1A1A1A; line-height: 25px !important; margin: 0; }
+.project-desc-col .proj-caption { margin-top: 0; }
+
+.project-tag-item { font-size: 17px !important; line-height: 25px !important; text-transform: none;
+  letter-spacing: 0.01em; display: block; }
+.project-title-line { font-size: 17px !important; font-weight: 400; color: #1A1A1A; line-height: 25px !important; }
+.project-title-year { color: #AEAAA4; }
+
+/* ── PROJECT DETAIL PAGE ── */
+:root{
+  --pd-cols: 10;
+  --pd-col: calc(100vw / var(--pd-cols));
+  --pd-thumb-w: calc(var(--pd-col) * 3);
+  --pd-h0: calc(var(--pd-thumb-w) * 1.22);
+  --pd-gap: calc(var(--pd-h0) / 10);
+  --pd-h1: calc(var(--pd-h0) * 1.1);
+  --pd-h12: calc(var(--pd-h0) * 1.2);
+  --pd-h22: calc(var(--pd-h0) * 2.2);
+  --pd-h21: calc(var(--pd-h0)*2 + var(--pd-gap));
+}
+
+.detail-page{
+  width: 100%;
+  animation: fadeIn 0.3s ease both;
+}
+.detail-sidebar{ display:none; }
+.detail-content{ width:100%; }
+
+.pd-section{ width:100%; }
+.pd-section + .pd-section{ margin-top: 0; }
+
+.pd-grid{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+}
+
+.pd-span-1{ grid-column: span 1; }
+.pd-span-2{ grid-column: span 2; }
+.pd-span-3{ grid-column: span 3; }
+.pd-span-4{ grid-column: span 4; }
+.pd-span-5{ grid-column: span 5; }
+.pd-span-6{ grid-column: span 6; }
+.pd-span-7{ grid-column: span 7; }
+.pd-span-8{ grid-column: span 8; }
+.pd-span-9{ grid-column: span 9; }
+.pd-span-10{ grid-column: span 10; }
+
+.pd-img{
+  width:100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pd-h0{ height: var(--pd-h0); }
+.pd-h1{ height: var(--pd-h1); }
+.pd-h12{ height: var(--pd-h12); }
+.pd-h22{ height: var(--pd-h22); }
+.pd-h21 { height: var(--pd-h21); }
+
+.pd-text{
+  min-height: var(--pd-h0);
+  padding: 42px 44px;
+  display:flex;
+  flex-direction: column;
+}
+
+/* Typography reused from old detail page */
+.detail-label{
+  font-family: 'EB Garamond', serif;
+  font-size: 17px !important;
+  font-style: italic;
+  color: #AEAAA4;
+  margin-bottom: 30px;
+  display:block;
+}
+.detail-title{
+  font-size: 17px !important;
+  font-weight: 400;
+  line-height: 25px !important;
+  margin-bottom: 36px;
+}
+.detail-desc{
+  font-size: 17px !important;
+  line-height: 25px !important;
+  color:#1A1A1A;
+  margin-bottom: 27px;
+}
+.detail-meta{
+  margin-top: auto;
+  padding-top: 48px;
+  display:flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.detail-meta-label{
+  font-family: 'EB Garamond', serif;
+  font-size: 17px !important;
+  font-style: italic;
+  color:#AEAAA4;
+  display:block;
+  margin-bottom: 3px;
+}
+.detail-meta-val{
+  font-size: 17px !important;
+  letter-spacing: 0.01em;
+}
+
+.pd-hero .detail-desc{ max-width: 52ch; }
+
+@media (max-width: 900px){
+  :root{ --pd-thumb-w: 100vw; }
+  .pd-grid{ grid-template-columns: 1fr; }
+  .pd-span-1,.pd-span-2,.pd-span-3,.pd-span-4,.pd-span-5,.pd-span-6,.pd-span-7,.pd-span-8,.pd-span-9,.pd-span-10{
+    grid-column: 1 / -1;
+  }
+  .pd-text{ padding: 28px; min-height: auto; }
+}
+
+/* ── GRADIENTS ── */
+.pg1  { background-image: url('leg.png'); background-size: cover; background-position: center; }
+.pg2  { background-image: url('asset_01.jpg'); background-size: cover; background-position: center; }
+.pg3  { background: radial-gradient(ellipse at 48% 28%, rgba(85,72,62,.58) 0%, transparent 52%), radial-gradient(ellipse at 55% 70%, rgba(68,58,50,.38) 0%, transparent 48%), linear-gradient(145deg, #C4B8B0 0%, #A09088 40%, #908078 100%); }
+.pg4  { background-image: url('cover.png'); background-size: cover; background-position: center; }
+.pg5  { background: radial-gradient(ellipse at 50% 30%, rgba(72,72,88,.55) 0%, transparent 52%), radial-gradient(ellipse at 48% 72%, rgba(58,58,72,.38) 0%, transparent 48%), linear-gradient(148deg, #BEBEBC 0%, #9898B0 40%, #8888A0 100%); }
+.pg6  { background-image: url('poster7.png'); background-size: cover; background-position: center; }
+.pg1b { background: radial-gradient(ellipse at 35% 40%, rgba(70,65,58,.55) 0%, transparent 55%), linear-gradient(140deg, #B8B2AA 0%, #908880 40%, #807870 100%); }
+.pg2b { background: radial-gradient(ellipse at 60% 38%, rgba(58,62,78,.5) 0%, transparent 52%), linear-gradient(160deg, #C0C4D8 0%, #A0A4C0 40%, #9094B0 100%); }
+.pg3b { background: radial-gradient(ellipse at 40% 32%, rgba(75,62,52,.52) 0%, transparent 52%), linear-gradient(140deg, #BCACA4 0%, #988880 40%, #887870 100%); }
+.pg4b { background: radial-gradient(ellipse at 55% 35%, rgba(55,68,58,.5) 0%, transparent 52%), linear-gradient(155deg, #C0CCC4 0%, #98B0A0 40%, #889890 100%); }
+.pg5b { background: radial-gradient(ellipse at 45% 32%, rgba(62,62,80,.5) 0%, transparent 52%), linear-gradient(150deg, #C8C8D4 0%, #A8A8C4 40%, #9898B4 100%); }
+.pg6b { background: radial-gradient(ellipse at 50% 38%, rgba(75,70,55,.5) 0%, transparent 52%), linear-gradient(148deg, #CCCAB0 0%, #AAAA90 40%, #9A9A80 100%); }
+.pg1c { background: radial-gradient(ellipse at 55% 45%, rgba(65,60,53,.45) 0%, transparent 50%), linear-gradient(165deg, #C8C2BA 0%, #A4A09A 40%, #94908A 100%); }
+.pg2c { background: radial-gradient(ellipse at 40% 42%, rgba(55,58,72,.45) 0%, transparent 50%), linear-gradient(145deg, #BCC0CE 0%, #9CA0B8 40%, #8C90A8 100%); }
+.pg3c { background: radial-gradient(ellipse at 52% 40%, rgba(72,58,48,.45) 0%, transparent 50%), linear-gradient(150deg, #C0B0A8 0%, #A09080 40%, #908070 100%); }
+.pg4c { background: radial-gradient(ellipse at 48% 38%, rgba(58,70,62,.45) 0%, transparent 50%), linear-gradient(155deg, #BCCAC0 0%, #9AACA0 40%, #8A9C90 100%); }
+
+.pg4d { background-image: linear-gradient(135deg, #d6d6d6 0%, #bfbfbf 100%); }
+.pg4e { background-image: linear-gradient(135deg, #d0d0d0 0%, #c2c2c2 100%); }
+.pg4f { background-image: linear-gradient(135deg, #d8d8d8 0%, #c8c8c8 100%); }
+.pg4g { background-image: linear-gradient(135deg, #d3d3d3 0%, #bebebe 100%); }
+.pg4h { background-image: linear-gradient(135deg, #bcbcbc 0%, #9f9f9f 100%); }
+.pg4i { background-image: linear-gradient(135deg, #cfcfcf 0%, #b3b3b3 100%); }
+.pg4j { background-image: linear-gradient(135deg, #cdcdcd 0%, #b0b0b0 100%); }
+.pg5c { background: radial-gradient(ellipse at 52% 42%, rgba(60,60,78,.45) 0%, transparent 50%), linear-gradient(148deg, #C4C4D0 0%, #A4A4C0 40%, #9494B0 100%); }
+.pg6c { background: radial-gradient(ellipse at 50% 40%, rgba(72,68,54,.45) 0%, transparent 50%), linear-gradient(150deg, #CAC8AE 0%, #A8A890 40%, #989880 100%); }
+
+/* ── GLOBAL UPPERCASE + ARIAL NARROW ── */
+* {
+  font-family: 'Arial Narrow', Arial, sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 17px !important;
+  line-height: 25px !important;
+}
+
+/* scaleY только для текстовых тегов и классов */
+p, a, li, h1, h2, h3, h4, h5, h6, label, button,
+.ph-title, .ph-tags li, .work-year,
+.bio-name, .bio-edu, .bio-practice,
+.proj-caption, .project-title-line, .project-title-year,
+.project-tag-item, .image-caption,
+.nav-name, .nav-home, .nav-next {
+  transform: scaleY(1.12);
+  transform-origin: top left;
+}
+/* scaleY(1.12) для домашней страницы, кроме шапки и кнопки КОНТАКТЫ */
+#page-home p:not(.site-nav *),
+#page-home a:not(.site-nav *),
+#page-home li:not(.site-nav *),
+#page-home h1:not(.site-nav *), #page-home h2:not(.site-nav *),
+#page-home h3:not(.site-nav *), #page-home h4:not(.site-nav *),
+#page-home h5:not(.site-nav *), #page-home h6:not(.site-nav *),
+#page-home label:not(.site-nav *),
+#page-home span:not(.site-nav *):not(#contacts-label-en):not(#contacts-label-ru),
+#page-home .bio-name, #page-home .bio-edu, #page-home .bio-practice,
+#page-home .proj-caption, #page-home .project-title-line,
+#page-home .project-title-year, #page-home .project-tag-item,
+#page-home .image-caption, #page-home .work-year,
+#page-home .contacts-row, #page-home .contacts-dropdown * {
+  transform: scaleY(1.12) !important;
+  transform-origin: top left !important;
+}
+
+/* Навигация */
+.site-nav *, .nav-cell, .nav-name, .nav-home, .nav-next,
+.site-nav button {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 13px !important;
+  line-height: 25px !important;
+}
+
+/* ── CUSTOM CURSOR ── */
+* { cursor: none !important; }
+#custom-cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #1A1A1A;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── LINK FIXES ── */
+.proj-link{
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+  padding: 0;
+  display: block;
+  line-height: 13px !important;
+}
+.proj-link:hover{ background: #FFFFFF; color: #1A1A1A; }
+
+/* ── BADGE: RESTORE ORIGINAL LOOK ── */
+.badge-photo{ font-size:22px !important; }
+.badge-name{
+  font-size:14px !important;
+  text-transform: uppercase !important;
+}
+.badge-title{ font-size:12px !important; }
+
+
+
+/* ── PROJECT HERO (match home grid) ── */
+.pd-hero-grid .pd-text{
+  min-height: var(--pd-h0);
+  padding: 28px 24px 40px 28px;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: start;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.pd-hero-desc {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+.pd-hero-desc .ph-body {
+  margin: 0 0 25px 0;
+}
+.pd-hero-desc .ph-body:last-child {
+  margin-bottom: 0;
+}
+.pd-hero-title {
+  grid-column: 4 / span 2;
+  grid-row: 1;
+  align-self: start;
+}
+.pd-hero-tags {
+  grid-column: 6 / span 2;
+  grid-row: 1;
+}
+.pd-hero-img {
+  grid-column: 8 / span 3;
+  grid-row: 1;
+}
+.pd-hero-title .ph-title{
+  font-size: 17px !important;
+  line-height: 25px !important;
+}
+.ph-tags{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ph-tags li{
+  font-size: 17px !important;
+  line-height: 25px !important;
+  letter-spacing: 0.01em;
+}
+.pd-hero{ padding: 0; margin: 0; }
+
+/* ── HERO GRIDS: text aligns to top, images stretch to full row height ── */
+.pd-hero-grid .pd-text,
+.pd-master-grid .pd-text {
+  align-self: start;
+  padding-top: 28px;
+  padding-left: 28px;
+}
+.pd-hero-grid .pd-img.pd-hero-img {
+  align-self: stretch;
+}
+.pd-master-grid .pd-frame {
+  align-self: start;
+}
+
+/* ───────── frames (placeholders) ───────── */
+.pd-frame{
+  background:#cfcfcf;
+  border:1px solid #111;
+  box-sizing:border-box;
+  height: var(--pd-h0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 24px;
+  overflow:hidden;
+}
+.pd-frame-label{
+  font-style: italic;
+  font-size: 17px !important;
+  line-height: 25px !important;
+  letter-spacing: -0.01em;
+  color:#111;
+}
+.pd-h1-2{ height: calc(var(--pd-h0) * 1.2); }
+
+.pd-follow-top{
+  grid-template-rows: var(--pd-h0) var(--pd-h1);
+}
+.pd-follow-top .pd-frame{ height:100%; }
+
+
+/* === p2 единая сетка hero + frames без зазоров === */
+#page-p2 .pd-master-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+}
+#page-p2 .pd-master-grid .pd-text {
+  min-height: var(--pd-h0);
+}
+/* блок 3: высота 2.1× pd-h0 */
+#page-p2 .pf-3 { height: calc(var(--pd-h0) * 2.1); }
+/* блок 4: высота + 2/10 высоты = 1.2× */
+#page-p2 .pf-4 { height: calc(var(--pd-h0) * 1.2); }
+/* блоки 5, 6: высота + 1/10 = 1.1× */
+#page-p2 .pf-5,
+#page-p2 .pf-6 { height: calc(var(--pd-h0) * 1.1); }
+/* блок 7: высота + 1/10 = 1.1× */
+#page-p2 .pf-7 { height: calc(var(--pd-h0) * 1.1); }
+/* блоки 8, 9, 10: высота + 1/10 = 1.1× */
+#page-p2 .pf-8,
+#page-p2 .pf-9,
+#page-p2 .pf-10 { height: calc(var(--pd-h0) * 1.1); }
+
+
+/* === uppercase all text on p2, p6, p7 === */
+#page-p2, #page-p6, #page-p7 { text-transform: uppercase; }
+
+/* === pd-gray placeholder === */
+.pd-gray { background: #cfcfcf; }
+
+/* === p6/p7 единая сетка hero === */
+#page-p6 .pd-master-grid,
+#page-p7 .pd-master-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+}
+#page-p6 .pd-master-grid .pd-text,
+#page-p7 .pd-master-grid .pd-text {
+  min-height: var(--pd-h0);
+}
+#page-p6 .pd-frame,
+#page-p7 .pd-frame { border: none; }
+
+
+/* === remove frame borders === */
+#page-p2 .pd-frame { border: none; }
+
+/* spacer и старые фреймы — убираем (больше не нужны) */
+#page-p2 .pf-spacer { display: none; }
+#page-p2 .pd-frames-grid { display: none; }
+
+
+.cover-img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#fff;transform: scale(1.03);}
+
+/* injected: media in cover blocks */
+.cover-b2{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#fff;}
+.cover-b3{width:100%;height:100%;object-fit:cover;display:block;}
+
+.cover-b4{object-fit: contain; object-position: center; background:#fff; }
+
+/* override: ensure block 4 image NEVER crops */
+.pd-frame .cover-b4{
+  width:100% !important;
+  height:100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: scale(1.3) !important;
+  display:block !important;
+  background:#fff !important;
+}
+
+/* injected: remove frame outlines on COVER page */
+#page-p5 .pd-frame{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* injected: last frame image */
+.cover-last{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position:center;
+  display:block;
+}
+
+/* injected: frames 8/9 media + last frame no fill */
+.cover-f8, .cover-f9{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+#page-p5 .pd-frame:last-of-type{
+  background: transparent !important;
+}
+
+/* injected: frame 7 image + frame 8 scale */
+.cover-f7{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+.cover-f8scale{
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+/* injected: frame 5 gif */
+.cover-f5gif{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+
+/* injected: frame 9 image */
+.cover-f9{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  display:block;
+}
+
+/* injected: frame 5 video */
+.cover-f5vid{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+.cover-f5vid::-webkit-media-controls{display:none !important;}
+/* Навигация — Times New Roman (должно быть последним чтобы перебить * Arial Narrow) */
+.site-nav *, .nav-cell, .nav-name, .nav-home, .nav-next,
+.site-nav button {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 25px !important;
+  transform: scaleY(1.2);
+  transform-origin: top left;
+  display: inline-block;
+}
+.site-nav a {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 13px !important;
+  transform: scaleY(1.2);
+  transform-origin: top left;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 4px;
+  text-decoration: none;
+  color: #1A1A1A;
+  transition: background 0.14s, color 0.14s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+#nav-about-proj {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important;
+  line-height: 13px !important;
+  transform: scaleY(1.2) !important;
+  transform-origin: top left !important;
+  display: inline-block !important;
+  padding: 0 !important;
+  letter-spacing: 0.06em !important;
+}
+#page-home .work-year, .work-year {
+  font-family: 'Times New Roman', Times, serif !important;
+  transform: scaleY(1.12) !important;
+  transform-origin: top left !important;
+  display: inline-block !important;
+}
+#skills-label-en, #skills-label-ru {
+  font-family: 'Times New Roman', Times, serif !important;
+  transform: scaleY(1.2) !important;
+  transform-origin: top left !important;
+}
+#nav-about { pointer-events: none; }
+#skills-label-en { display: inline-block; pointer-events: none; }
+#skills-label-ru { display: none; pointer-events: none; }
+
+/* Contacts */
+.contacts-wrap {
+  position: absolute;
+  top: calc(50% + 40px);
+  left: 0;
+  right: 0;
+  padding: 0 0 12px 28px;
+}
+.contacts-wrap.open {
+  background: #F8F8F8;
+  padding: 0 0 16px 28px;
+}
+.contacts-btn {
+  background: none; border: none; padding: 0;
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 14px !important; line-height: 13px !important;
+  color: #1A1A1A; text-transform: uppercase;
+  cursor: none; display: block; width: 100%;
+  box-sizing: border-box;
+  transition: background 0.14s;
+  text-align: left;
+  transform: scaleY(1.2) !important;
+  transform-origin: top left !important;
+}
+.contacts-btn:hover { background: #FFFFFF; }
+.contacts-dropdown {
+  display: none;
+  margin-top: 43px;
+  color: #1A1A1A;
+  width: 100%;
+}
+.contacts-dropdown.open { display: block; }
+.contacts-row {
+  padding: 0;
+  cursor: none;
+  transition: background 0.14s;
+  line-height: 13px !important;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.contacts-row:hover { background: #FFFFFF; }
+.contacts-row a {
+  color: #1A1A1A !important;
+  text-decoration: none !important;
+  display: block;
+  width: 100%;
+}
+.contacts-dropdown,
+.contacts-dropdown *,
+.contacts-row,
+.contacts-row * {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 19px !important;
+  text-transform: none !important;
+  transform: scaleY(1.12) !important;
+  transform-origin: top left !important;
+}
+</style>
+</head>
+<body>
+<div id="custom-cursor"></div>
+<script>
+(function(){
+  const c = document.getElementById('custom-cursor');
+  document.addEventListener('mousemove', e => {
+    c.style.left = e.clientX + 'px';
+    c.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mousedown', () => { c.style.width='7px'; c.style.height='7px'; });
+  document.addEventListener('mouseup', () => { c.style.width='12px'; c.style.height='12px'; });
+})();
+</script>
+<!-- ══════ HOME ══════ -->
+<div class="page active" id="page-home">
+<nav class="site-nav">
+  <div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+  <div class="nav-home"><a href="#" onclick="return false;" id="nav-about" style="padding:0;">PROJECTS</a></div>
+  <div class="nav-skills" style="grid-column: 6 / span 2;"><span id="skills-label-en" style="display:inline-block;transform:scaleY(1.2);transform-origin:top left;font-family:'Times New Roman',Times,serif!important;">CORE SKILLS</span><span id="skills-label-ru" style="display:none;transform:scaleY(1.2);transform-origin:top left;font-family:'Times New Roman',Times,serif!important;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+  <div class="nav-next"><button id="lang-ru" onclick="setLang('ru')" style="background:#FFFFFF;color:#1A1A1A;border:none;padding:0 4px;font-family:'Times New Roman',Times,serif;font-size:14px!important;letter-spacing:0.06em;text-transform:uppercase!important;cursor:none;line-height:13px!important;">РУ</button><button id="lang-en" onclick="setLang('en')" style="background:transparent;color:#1A1A1A;border:none;padding:0 4px;font-family:'Times New Roman',Times,serif;font-size:14px!important;letter-spacing:0.06em;text-transform:uppercase!important;cursor:none;line-height:13px!important;">EN</button></div>
+</nav>
+<div class="info-area">
+<div class="block block-1">
+<ul class="bio-list" id="bio-en">
+<li class="bio-name">Hi, my name is Anastasia Chernikova,</li>
+<li class="bio-name">and I'm a graphic designer based in Yerevan.</li>
+<li class="bio-name">Specializing in identity, print, digital media,</li>
+<li class="bio-name">and AI visuals, with a particular focus on</li>
+<li class="bio-name">projects in music, fashion, exhibitions,</li>
+<li class="bio-name bio-gap">cultural events, and film.</li>
+<li class="bio-name">Passionate about projects where design</li>
+<li class="bio-name">becomes a visible part of the visual world.</li>
+</ul>
+<ul class="bio-list" id="bio-ru" style="display:none;">
+<li class="bio-name">Привет. Меня зовут Анастасия Черникова</li>
+<li class="bio-name">и&nbsp;я графический дизайнер.</li>
+<li class="bio-name">Сейчас базируюсь в&nbsp;Ереване.</li>
+<li class="bio-name">Работаю с&nbsp;айдентикой, печатными медиа,</li>
+<li class="bio-name">цифровыми форматами и&nbsp;AI-визуалом.</li>
+<li class="bio-name">Особенно интересуют проекты в&nbsp;сферах</li>
+<li class="bio-name">музыки, моды, выставок, культурных</li>
+<li class="bio-name bio-gap">событий и&nbsp;кино.</li>
+<li class="bio-name">Люблю проекты, где дизайн становится</li>
+<li class="bio-name">заметной частью визуального мира.</li>
+</ul>
+<div class="block-1-spacer"></div>
+<div class="contacts-wrap">
+  <button class="contacts-btn" onclick="toggleContacts()" id="contacts-btn">
+    <span id="contacts-label-en">CONTACTS</span><span id="contacts-label-ru" style="display:none;">КОНТАКТЫ</span>
+  </button>
+  <div class="contacts-dropdown" id="contacts-dropdown">
+    <div class="contacts-row"><a href="https://instagram.com/29x65" target="_blank" rel="noopener">IG.&nbsp;&nbsp;&nbsp;@29x65</a></div>
+    <div class="contacts-row"><a href="https://t.me/stacy29x65" target="_blank" rel="noopener">TG.&nbsp;&nbsp;&nbsp;@stacy29x65</a></div>
+    <div class="contacts-row" onclick="copyEmail()" style="cursor:none;">E.&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fdb5bcafb0aea9bcb3a9bcbdbab0bcb4b1d3beb2b0">[email&#160;protected]</a></div>
+  </div>
+</div>
+</div>
+<div class="block block-2">
+<ul class="work-list" id="worklist-ru">
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+</ul>
+<ul class="work-list" id="worklist-en" style="display:none;">
+<li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+<li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+</ul>
+</div>
+<div class="block block-3 block-mid">
+<ul class="disc-list">
+<li><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></li>
+<li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li>
+<li><span data-ru="Дизайн издания" data-en="Editorial Design">Editorial Design</span></li>
+<li><span data-ru="Креативное руководство" data-en="Creative Direction">Creative Direction</span></li>
+</ul>
+</div>
+<div class="block block-4">
+<div style="width:100%;height:var(--pd-h0);background:#E4E1DD;position:relative;overflow:hidden;">
+  <img src="face_home.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;mix-blend-mode:multiply;opacity:0.85;"/>
+</div>
+</div>
+</div>
+<section class="projects-section">
+<!-- 1. Следуй за мной -->
+<div class="project-row" onclick="showProject('p2')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg1"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p2');return false;"><span class="project-title-line"><span data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">Следуй за&nbsp;мной</span><span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></span>
+<span class="project-tag-item"><span data-ru="Типографика" data-en="Typography">Typography</span></span>
+<span class="project-tag-item"><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></span>
+<span class="project-tag-item"><span data-ru="Печатный дизайн" data-en="Print Design">Print Design</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p2-ru">«Следуй за&nbsp;мной» — карманная книга о&nbsp;том, как&nbsp;Софи Каль собирает портреты людей через оставленные ими следы.</p><p class="proj-caption" id="desc-p2-en" style="display:none;">"Follow Me" is a pocket book exploring how Sophie Calle creates portraits of people through the traces they leave behind.</p></div>
+</div>
+<!-- 2. В ритме дней -->
+<div class="project-row" onclick="showProject('p3')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg2"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p3');return false;"><span class="project-title-line"><span data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В&nbsp;ритме дней</span><span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Дизайн издания" data-en="Editorial Design">Editorial Design</span></span>
+<span class="project-tag-item"><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p3-ru">Проект календаря, в&nbsp;котором повторяющаяся структура дней отражает монотонность времени и&nbsp;изменчивость повседневности.</p><p class="proj-caption" id="desc-p3-en" style="display:none;">A calendar project exploring the rhythm of time through a repeating structure of days, reflecting both monotony and the shifting nature of everyday life.</p></div>
+</div>
+<!-- 3. COVER -->
+<div class="project-row" onclick="showProject('p5')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner pg4"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p5');return false;"><span class="project-title-line"><span data-ru="COVER" data-en="COVER">COVER</span><span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Графический дизайн" data-en="Graphic Design">Graphic Design</span></span>
+<span class="project-tag-item"><span data-ru="Печатная продукция" data-en="Printed Matter">Printed Matter</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p5-ru">Брендинг и&nbsp;упаковка для&nbsp;дизайнерского бренда одежды COVER.</p><p class="proj-caption" id="desc-p5-en" style="display:none;">Branding and packaging design for the fashion brand COVER.</p></div>
+</div>
+<!-- 4. Underdog постеры -->
+<div class="project-row" onclick="showProject('p7')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner" style="background-image:url('poster7.png');background-size:cover;background-position:center;"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p7');return false;"><span class="project-title-line"><span data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">Underdog постеры</span><span class="project-title-year">, 2024</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Графический дизайн" data-en="Graphic Design">Graphic Design</span></span>
+<span class="project-tag-item"><span data-ru="Печатная продукция" data-en="Printed Matter">Printed Matter</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p7-ru">Плакаты для&nbsp;проекта Underdog, предоставляющего начинающим авторам платформу для&nbsp;самопрезентации и&nbsp;поиска своей аудитории.</p><p class="proj-caption" id="desc-p7-en" style="display:none;">Posters for the Underdog project, giving emerging creators a platform to present themselves and find their audience.</p></div>
+</div>
+<!-- 6. [HAI] VIEW -->
+<div class="project-row" onclick="showProject('p4')">
+<div class="project-visual">
+<div class="proj-img"><div class="proj-img-inner" style="background-image:url('aihero.png');background-size:cover;background-position:center;filter:blur(8px);transform:scale(1.05);"></div></div>
+</div>
+<div class="project-text"><a class="proj-link" href="#" onclick="showProject('p4');return false;"><span class="project-title-line"><span data-ru="[HAI] VIEW" data-en="[HAI] VIEW">[HAI] VIEW</span><span class="project-title-year">, 2025</span></span></a></div>
+<div class="project-tags-col">
+<span class="project-tag-item"><span data-ru="Креативное руководство" data-en="Creative Direction">Creative Direction</span></span>
+<span class="project-tag-item"><span data-ru="Графический дизайн" data-en="Graphic Design">Graphic Design</span></span>
+</div><div class="project-desc-col"><p class="proj-caption" id="desc-p4-ru">Серия визуальных работ разных форматов, созданных с&nbsp;помощью генеративного AI.</p><p class="proj-caption" id="desc-p4-en" style="display:none;">A series of visual works in different formats created using generative AI.</p></div>
+</div>
+</section>
+</div>
+<!-- ════
+  <!-- Layout frames (do not touch the header image above) -->
+<div class="page" data-project="p1" id="page-p2">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home" style="grid-column: 4 / span 2; padding-left: 28px;">
+  <ul class="nav-proj-list" id="nav-proj-list-en">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+  <ul class="nav-proj-list" id="nav-proj-list-ru" style="display:none;">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+</div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p3');return false;" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В РИТМЕ ДНЕЙ</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero">
+<div class="pd-grid pd-master-grid">
+<!-- ROW 1: hero текст (3+2+2 колонки) + блок 1 картинка (3 колонки, высота pd-h0) -->
+<div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;">
+<p class="ph-body" id="p2-desc-ru">«СЛЕДУЙ ЗА&nbsp;МНОЙ» — КАРМАННАЯ ИССЛЕДОВАТЕЛЬСКАЯ КНИГА О&nbsp;МЕТОДЕ СОФИ КАЛЛЬ, В&nbsp;КОТОРОМ ПОРТРЕТЫ ЛЮДЕЙ СОЗДАЮТСЯ ЧЕРЕЗ СЛЕДЫ: ПРЕДМЕТЫ, МАРШРУТЫ, СВИДЕТЕЛЬСТВА И&nbsp;ФРАГМЕНТЫ НАБЛЮДЕНИЙ. ПРОЕКТ ВЫРОС ИЗ&nbsp;ИНТЕРЕСА НЕ&nbsp;ТОЛЬКО К&nbsp;САМОМУ ТВОРЧЕСТВУ КАЛЛЬ, НО&nbsp;И&nbsp;К&nbsp;ТОМУ, КАК&nbsp;НАРРАТИВНАЯ ФОРМА СПОСОБНА ПОРОЖДАТЬ ОЩУЩЕНИЕ ФАКТА И&nbsp;ДОСТОВЕРНОСТИ. МЕНЯ ИНТЕРЕСОВАЛО, КАК&nbsp;СУХАЯ ДОКУМЕНТАЦИЯ, ПОВТОРЕНИЕ, МОНТАЖ И&nbsp;ТЩАТЕЛЬНЫЙ ОТБОР ДЕТАЛЕЙ МОГУТ ОДНОВРЕМЕННО РАСКРЫВАТЬ ЖИЗНЬ ДРУГОГО ЧЕЛОВЕКА И&nbsp;ОБНАЖАТЬ ВЗГЛЯД, КОТОРЫЙ ЭТУ ЖИЗНЬ КОНСТРУИРУЕТ. В&nbsp;ЭТОМ СМЫСЛЕ КНИГА СТАЛА НЕ&nbsp;ТОЛЬКО РАЗМЫШЛЕНИЕМ О&nbsp;ЧУЖОЙ ИСТОРИИ, НО&nbsp;И&nbsp;О&nbsp;НАБЛЮДАТЕЛЕ, КОТОРЫЙ РЕШАЕТ, ЧТО БУДЕТ УВИДЕНО, ЧТО ОСТАНЕТСЯ ЗА&nbsp;КАДРОМ И&nbsp;КАК&nbsp;ПОРТРЕТ СКЛАДЫВАЕТСЯ ИЗ&nbsp;ФРАГМЕНТОВ, А&nbsp;НЕ&nbsp;ЧЕРЕЗ ПРЯМОЕ ОПИСАНИЕ.</p>
+<p class="ph-body" id="p2-desc-en" style="display:none;">"FOLLOW ME" IS A POCKET-SIZED RESEARCH BOOK ABOUT SOPHIE CALLE'S METHOD OF CONSTRUCTING PORTRAITS OF PEOPLE THROUGH TRACES: OBJECTS, ROUTES, TESTIMONIES, AND FRAGMENTS OF OBSERVATION. THE PROJECT GREW OUT OF AN INTEREST NOT ONLY IN CALLE'S WORK ITSELF, BUT ALSO IN THE WAY NARRATIVE FORM CAN PRODUCE A SENSE OF FACT AND CREDIBILITY. I WAS INTERESTED IN HOW DRY DOCUMENTATION, REPETITION, MONTAGE, AND THE CAREFUL SELECTION OF DETAILS CAN SIMULTANEOUSLY REVEAL ANOTHER PERSON'S LIFE AND EXPOSE THE GAZE THAT CONSTRUCTS IT. IN THIS SENSE, THE BOOK BECAME NOT ONLY A REFLECTION ON SOMEONE ELSE'S STORY, BUT ALSO ON THE OBSERVER WHO DECIDES WHAT IS SEEN, WHAT IS LEFT OUT OF FRAME, AND HOW A PORTRAIT IS BUILT THROUGH FRAGMENTS RATHER THAN DIRECT DESCRIPTION.</p>
+</div>
+<div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<ul class="proj-index-list">
+<li><span class="proj-index-current" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></span></li>
+<li><span data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В&nbsp;РИТМЕ ДНЕЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="COVER" data-en="COVER">COVER</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG ПОСТЕРЫ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></li>
+<li><span data-ru="[HAI] VIEW" data-en="[HAI] VIEW">[HAI] VIEW</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+</ul>
+</div>
+<div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+<ul class="ph-tags">
+<li><span data-ru="Редакционный дизайн" data-en="Editorial Design">Editorial Design</span></li>
+<li><span data-ru="Типографика" data-en="Typography">Typography</span></li>
+<li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li>
+<li><span data-ru="Печатный дизайн" data-en="Print Design">Print Design</span></li>
+</ul>
+</div>
+
+<!-- блок 1 (серый) — правые 3 колонки, row 1, высота pd-h0 -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;"><img src="asset_02.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 2: пустота 7 колонок + блок 2 (красный/серый) — 3 колонки, высота pd-h1 -->
+<!-- пустота слева -->
+<div style="grid-column: 1 / span 7; grid-row: 2; display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+  <img id="quote-p2-img-ru" src="quote_p2.svg" style="width:586px;height:255px;display:block;cursor:grab;position:relative;" draggable="false"/>
+  <img id="quote-p2-img-en" src="quote_p2_en.svg" style="width:586px;height:255px;display:none;cursor:grab;position:relative;" draggable="false"/>
+</div>
+<script>
+(function(){
+  function makeDraggable(img) {
+    if(!img) return;
+    var dragging = false, ox=0, oy=0, tx=0, ty=0;
+    img.addEventListener('mousedown', function(e){
+      dragging = true;
+      ox = e.clientX - tx;
+      oy = e.clientY - ty;
+      img.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', function(e){
+      if(!dragging) return;
+      tx = e.clientX - ox;
+      ty = e.clientY - oy;
+      img.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+    });
+    window.addEventListener('mouseup', function(){
+      if(!dragging) return;
+      dragging = false;
+      img.style.cursor = 'grab';
+    });
+    img.addEventListener('touchstart', function(e){
+      dragging = true;
+      var t = e.touches[0];
+      ox = t.clientX - tx;
+      oy = t.clientY - ty;
+      e.preventDefault();
+    }, {passive:false});
+    window.addEventListener('touchmove', function(e){
+      if(!dragging) return;
+      var t = e.touches[0];
+      tx = t.clientX - ox;
+      ty = t.clientY - oy;
+      img.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+      e.preventDefault();
+    }, {passive:false});
+    window.addEventListener('touchend', function(){ dragging = false; });
+  }
+  window.addEventListener('load', function(){
+    makeDraggable(document.getElementById('quote-p2-img-ru'));
+    makeDraggable(document.getElementById('quote-p2-img-en'));
+    makeDraggable(document.getElementById('quote-p2-ru2'));
+    makeDraggable(document.getElementById('quote-p2-en2'));
+    makeDraggable(document.getElementById('quote-p2-ru3'));
+    makeDraggable(document.getElementById('quote-p2-en3'));
+  });
+})();
+</script>
+<!-- блок 2 — правые 3 колонки, row 2, высота pd-h1 -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 2; height: var(--pd-h1); padding: 0; overflow: hidden;"><img src="asset_03.png" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+</div>
+<!-- ROW 3: блок 3 — 7 колонок, высота 2.1× pd-h0 -->
+<div class="pd-frame pd-gray pf-3" style="grid-column: 1 / span 7; grid-row: 3; padding: 0; overflow: hidden;">
+<img src="asset_04.gif" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+</div>
+<!-- пустота справа -->
+<div style="grid-column: 8 / span 3; grid-row: 3;"></div>
+<!-- ROW 4+5: блок 4 — 5 пустых + 5 колонок (6–10), высота 1.2× -->
+<div style="grid-column: 1 / span 5; grid-row: 4; display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+  <img id="quote-p2-ru2" src="quote_p2_ru2.svg" style="width:547px;height:391px;display:block;cursor:grab;position:relative;" draggable="false"/>
+  <img id="quote-p2-en2" src="quote_p2_en2.svg" style="width:547px;height:391px;display:none;cursor:grab;position:relative;" draggable="false"/>
+</div>
+
+<div class="pd-frame pd-gray pf-4" style="grid-column: 6 / span 5; grid-row: 4; padding:0; overflow:hidden;"><img src="asset_05.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 5: блок 5 (1–5) и блок 6 (6–10), высота 1.1× каждый -->
+<div class="pd-frame pd-gray pf-5" style="grid-column: 1 / span 5; grid-row: 5; padding:0; overflow:hidden;"><img src="asset_06.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-6" style="grid-column: 6 / span 5; grid-row: 5; padding:0; overflow:hidden;"><img src="fmebook.gif" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- ROW 6: блок 7 — 1–7, высота 1.1× -->
+<div class="pd-frame pd-gray pf-7" style="grid-column: 1 / span 7; grid-row: 6; padding:0; overflow:hidden;"><img src="asset_08.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<!-- SVG поверх row 6, колонки 5–10 -->
+<div style="grid-column: 5 / span 6; grid-row: 6; display:flex; align-items:center; justify-content:center; position:relative; z-index:10; overflow:visible; pointer-events:none; min-width:0;">
+  <img id="quote-p2-ru3" src="quote_p2_ru3.svg" style="width:701px;height:125px;flex-shrink:0;display:block;cursor:grab;position:relative;pointer-events:all;" draggable="false"/>
+  <img id="quote-p2-en3" src="quote_p2_en3.svg" style="width:569px;height:106px;flex-shrink:0;display:none;cursor:grab;position:relative;pointer-events:all;" draggable="false"/>
+</div>
+<!-- ROW 7: блоки 8 (4 кол), 9 (3 кол), 10 (3 кол), высота 1.1× каждый -->
+<div class="pd-frame pd-gray pf-8" style="grid-column: 1 / span 4; grid-row: 7; padding:0; overflow:hidden;"><img src="asset_09.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-9" style="grid-column: 5 / span 3; grid-row: 7; padding:0; overflow:hidden;"><img src="asset_10.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="pd-frame pd-gray pf-10" style="grid-column: 8 / span 3; grid-row: 7; padding:0; overflow:hidden;"><img src="asset_11.png" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page" id="page-p3">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home" style="grid-column: 4 / span 2; padding-left: 28px;">
+  <ul class="nav-proj-list" id="nav-proj-list-en">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+  <ul class="nav-proj-list" id="nav-proj-list-ru" style="display:none;">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+</div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p5');return false;" data-ru="COVER" data-en="COVER">COVER</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;"><p class="ph-body" id="p3-desc-ru">Календарь представляет год как&nbsp;равномерную сетку повторяющихся дней, подчёркивая визуальную монотонность и&nbsp;одинаковость ритма. Вертикальные полосы добавляют движение, указывая на&nbsp;изменчивость и&nbsp;нестабильность повседневности. Несмотря на&nbsp;одинаковую структуру, каждый день подвержен динамике внешних обстоятельств.</p><p class="ph-body" id="p3-desc-en" style="display:none;">The calendar represents the year as a uniform grid of repeating days, emphasizing visual monotony and the sameness of rhythm. The vertical strips introduce movement, pointing to the unpredictability and instability of everyday life. Despite this identical structure, each day remains subject to the dynamics of external circumstances.</p></div><div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;"><ul class="proj-index-list">
+<li><span data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">СЛЕДУЙ ЗА&nbsp;МНОЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span class="proj-index-current" data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></span></li>
+<li><span data-ru="COVER" data-en="COVER">COVER</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG ПОСТЕРЫ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></li>
+<li><span data-ru="[HAI] VIEW" data-en="[HAI] VIEW">[HAI] VIEW</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+</ul></div><div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;"><ul class="ph-tags"><li><span data-ru="Дизайн издания" data-en="Editorial Design">Editorial Design</span></li><li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li></ul></div><div class="pd-img pd-span-3 pd-h0 pg2 pd-hero-img" style="background-image:url('asset_12.png');"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-5 pd-h0" style="background: url('asset_13.png') left bottom/contain no-repeat;"></div>
+<div class="pd-span-5" style="display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+  <img id="p3-quote-ru" src="p3_quote_ru.svg" style="width:555px;height:303px;display:block;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+  <img id="p3-quote-en" src="p3_quote_en.svg" style="width:555px;height:263px;display:none;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  function makeDraggableP3(img) {
+    if(!img) return;
+    var dragging=false, ox=0, oy=0, tx=0, ty=0;
+    img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+    window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+    window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+    img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+    window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+    window.addEventListener('touchend',function(){dragging=false;});
+  }
+  makeDraggableP3(document.getElementById('p3-quote-ru'));
+  makeDraggableP3(document.getElementById('p3-quote-en'));
+})();
+</script>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg2b" style="background: url('asset_14.png') center/cover no-repeat;"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-span-3"></div>
+<div class="pd-img pd-span-7 pd-h22 pg2c" style="background: url('asset_15.png') center/cover no-repeat;"></div>
+</div>
+</div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-3 pd-h12 pg2" data-missing-image="third-image" style="background: url('asset_16.png') center/cover no-repeat;"></div>
+<div class="pd-span-7" style="display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+  <img id="p3-quote2-ru" src="p3_quote2_ru.svg" style="width:700px;height:175px;display:block;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+  <img id="p3-quote2-en" src="p3_quote2_en.svg" style="width:700px;height:175px;display:none;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  function makeDraggableP3b(img) {
+    if(!img) return;
+    var dragging=false, ox=0, oy=0, tx=0, ty=0;
+    img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+    window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+    window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+    img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+    window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+    window.addEventListener('touchend',function(){dragging=false;});
+  }
+  makeDraggableP3b(document.getElementById('p3-quote2-ru'));
+  makeDraggableP3b(document.getElementById('p3-quote2-en'));
+})();
+</script>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h22 pg2b" style="background: url('asset_17.png') center/cover no-repeat;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 03 ══════ -->
+<div class="page" id="page-p4">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home" style="grid-column: 4 / span 2; padding-left: 28px;">
+  <ul class="nav-proj-list" id="nav-proj-list-en">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+  <ul class="nav-proj-list" id="nav-proj-list-ru" style="display:none;">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+</div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p2');return false;" data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">СЛЕДУЙ ЗА МНОЙ</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero"><div class="pd-grid pd-hero-grid"><div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;"><p class="ph-body">Исследование визуального языка искусственного интеллекта в&nbsp;контексте современной графики и&nbsp;арт-дирекции. Кто является автором, когда инструмент становится соавтором?</p><p class="ph-body">Серия из&nbsp;24 работ, созданных в&nbsp;диалоге с&nbsp;генеративными системами. Каждая сопровождается текстом о&nbsp;процессе и&nbsp;намерении.</p></div><div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;"><ul class="proj-index-list">
+<li><span data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">СЛЕДУЙ ЗА&nbsp;МНОЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В&nbsp;РИТМЕ ДНЕЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="COVER" data-en="COVER">COVER</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG ПОСТЕРЫ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></li>
+<li><span class="proj-index-current" data-ru="[HAI] VIEW" data-en="[HAI] VIEW">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></span></li>
+</ul></div><div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;"><ul class="ph-tags"><li><span data-ru="Креативное руководство" data-en="Creative Direction">Creative Direction</span></li><li><span data-ru="Графический дизайн" data-en="Graphic Design">Graphic Design</span></li></ul></div><div class="pd-img pd-span-3 pd-h0 pd-hero-img" style="background-image:url('aihero.png');background-size:cover;background-position:center;filter:blur(8px);transform:scale(1.05);overflow:hidden;"></div></div></div>
+<div class="pd-section">
+<div class="pd-grid">
+<div class="pd-img pd-span-10 pd-h1 pg3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════ PROJECT 04 ══════ -->
+<div class="page" id="page-p5">
+<nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home" style="grid-column: 4 / span 2; padding-left: 28px;">
+  <ul class="nav-proj-list" id="nav-proj-list-en">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+  <ul class="nav-proj-list" id="nav-proj-list-ru" style="display:none;">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+</div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+<div class="nav-next"><a href="#" onclick="showProject('p7');return false;" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG ПОСТЕРЫ</a></div>
+</nav>
+<div class="detail-page">
+<div class="detail-content">
+<div class="pd-section pd-hero">
+<div class="pd-grid pd-master-grid">
+<!-- ROW 1: hero текст + блок 1 (как на странице "Следуй за мной") -->
+<div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;">
+<p class="ph-body" id="p5-desc-ru">COVER — бренд одежды с&nbsp;акцентом на&nbsp;лаконичные формы и&nbsp;скрытые детали. Силуэты не&nbsp;раскрывают всё сразу, оставляя место для&nbsp;индивидуального стиля владельца. При&nbsp;этом бренд остаётся доступным по&nbsp;цене, что расширяет круг его аудитории.</p>
+<p class="ph-body" id="p5-desc-en" style="display:none;">COVER is a clothing brand focused on clean silhouettes and subtle details. The silhouettes don't reveal everything at once, leaving room for the wearer's individual style. At the same time, the brand remains accessible in price, broadening its audience.</p>
+</div>
+<div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<ul class="proj-index-list">
+<li><span data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">СЛЕДУЙ ЗА&nbsp;МНОЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В&nbsp;РИТМЕ ДНЕЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span class="proj-index-current" data-ru="COVER" data-en="COVER">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></span></li>
+<li><span data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG ПОСТЕРЫ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></li>
+<li><span data-ru="[HAI] VIEW" data-en="[HAI] VIEW">[HAI] VIEW</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+</ul>
+</div>
+<div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+<ul class="ph-tags">
+<li><span data-ru="Арт-дирекция" data-en="Art Direction">Art Direction</span></li>
+<li><span data-ru="Айдентика бренда" data-en="Brand Identity">Brand Identity</span></li>
+<li>Campaign</li>
+<li>Socials</li>
+<li>Packaging</li>
+</ul>
+</div>
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;">
+<div class="pd-img pg4" style="width:100%; height:100%;">
+<img alt="COVER" class="pd-media cover-img" decoding="async" loading="eager" src="asset_18.png"/>
+</div>
+</div>
+<!-- ROW 2: блок под заблюренной картинкой (5 колонок, высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 5; grid-row: 2; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+<img alt="" class="pd-media cover-b2" decoding="async" loading="lazy" src="asset_19.png"/>
+</div>
+<!-- ROW 3: блок 3 (как на схеме) — под блоком 2 и рядом с блоком 4 -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 7; grid-row: 3; height: calc(var(--pd-h0) * 0.5); width: 35.714%; align-self: center; justify-self: center; padding:0; overflow:hidden;">
+<img alt="" class="pd-media cover-b3" decoding="sync" loading="eager" src="asset_20.gif"/>
+</div>
+<!-- ROW 3: правый блок (3 колонки, высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 3; height: calc(var(--pd-h0) * 1.1);">
+<img alt="" class="pd-media cover-b4" decoding="async" loading="lazy" src="asset_21.png"/>
+</div>
+<!-- ROW 4: большой блок (10 колонок, высота = 2 * высоты картинки + 1/10) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 10; grid-row: 4; height: calc(var(--pd-h0) * 2.1); padding:0; overflow:hidden;"><img alt="" src="asset_22.gif" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" loading="eager" decoding="async"></div>
+<!-- ROW 5: нижний правый блок (3 колонки, высота = 1.1 * высоты картинки) -->
+<div style="grid-column: 1 / span 7; grid-row: 5; height: calc(var(--pd-h0) * 1.1); display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+  <img id="p5-quote-ru" src="p5_quote_ru.svg" style="width:595px;height:214px;display:block;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+  <img id="p5-quote-en" src="p5_quote_en.svg" style="width:595px;height:202px;display:none;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+</div>
+<script>
+(function(){
+  function makeDraggableP5(img) {
+    if(!img) return;
+    var dragging=false, ox=0, oy=0, tx=0, ty=0;
+    img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+    window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+    window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+    img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+    window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+    window.addEventListener('touchend',function(){dragging=false;});
+  }
+  makeDraggableP5(document.getElementById('p5-quote-ru'));
+  makeDraggableP5(document.getElementById('p5-quote-en'));
+})();
+</script>
+<div class="pd-frame pd-gray" style="grid-column: 8 / span 3; grid-row: 5; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;"><video autoplay loop muted playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"><source src="asset_27.mp4" type="video/mp4"></video></div>
+<!-- ROW 6: блок 7 колонок (высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 7; grid-row: 6; height: calc(var(--pd-h0) * 1.1);; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f7" decoding="async" loading="lazy" src="asset_23.png"/></div>
+<!-- ROW 7: два блока по 5 колонок (высота = 1.1 * высоты картинки) -->
+<div class="pd-frame pd-gray" style="grid-column: 1 / span 5; grid-row: 7; height: calc(var(--pd-h0) * 1.1);; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f8 cover-f8scale" decoding="async" loading="lazy" src="asset_24.png"/></div>
+<div class="pd-frame pd-gray" style="grid-column: 6 / span 5; grid-row: 7; height: calc(var(--pd-h0) * 1.1);; padding:0; overflow:hidden;"><img alt="" class="pd-media cover-f9" decoding="async" loading="lazy" src="asset_25.png"/></div>
+<!-- ROW 8: левый блок 3 колонки (высота = 1.2 * высоты картинки) -->
+<div class="pd-frame" style="grid-column: 1 / span 3; grid-row: 8; height: calc(var(--pd-h0) * 1.2);">
+<img alt="" class="pd-media cover-last" decoding="async" loading="lazy" src="asset_26.png"/>
+</div>
+<div style="grid-column: 4 / span 7; grid-row: 8; height: calc(var(--pd-h0) * 1.2); display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+  <img id="p5-quote2-ru" src="p5_quote2_ru.svg" style="width:700px;height:132px;display:block;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+  <img id="p5-quote2-en" src="p5_quote2_en.svg" style="width:700px;height:132px;display:none;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+</div>
+<script>
+(function(){
+  function makeDraggableP5b(img) {
+    if(!img) return;
+    var dragging=false, ox=0, oy=0, tx=0, ty=0;
+    img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+    window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+    window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+    img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+    window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+    window.addEventListener('touchend',function(){dragging=false;});
+  }
+  makeDraggableP5b(document.getElementById('p5-quote2-ru'));
+  makeDraggableP5b(document.getElementById('p5-quote2-en'));
+})();
+</script>
+</div><!-- /pd-master-grid -->
+</div><!-- /pd-section pd-hero -->
+</div><!-- /detail-content -->
+</div><!-- /detail-page -->
+</div><!-- /page-p5 -->
+<!-- ══════ PROJECT 06 ══════ -->
+<div class="page" id="page-p7">
+  <nav class="site-nav">
+<div class="nav-name"><a href="#" onclick="showHome();return false;" data-ru="АНАСТАСИЯ ЧЕРНИКОВА" data-en="ANASTASIA CHERNIKOVA">ANASTASIA CHERNIKOVA</a></div>
+<div class="nav-home" style="grid-column: 4 / span 2; padding-left: 28px;">
+  <ul class="nav-proj-list" id="nav-proj-list-en">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">FOLLOW ME <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">IN THE RHYTHM OF DAYS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG POSTERS <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+  <ul class="nav-proj-list" id="nav-proj-list-ru" style="display:none;">
+    <li><a class="proj-link" href="#" onclick="showProject('p2');return false;">СЛЕДУЙ ЗА МНОЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p3');return false;">В РИТМЕ ДНЕЙ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p5');return false;">COVER <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p7');return false;">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></a></li>
+    <li><a class="proj-link" href="#" onclick="showProject('p4');return false;">[HAI] VIEW <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></a></li>
+  </ul>
+</div><div class="nav-skills"><span class="skills-label-en-proj" style="font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">CORE SKILLS</span><span class="skills-label-ru-proj" style="display:none;font-family:'Times New Roman',Times,serif;display:inline-block;transform:scaleY(1.2);transform-origin:top left;">КЛЮЧЕВЫЕ НАВЫКИ</span></div>
+
+</nav>
+  <div class="detail-page">
+    <div class="detail-content">
+      <div class="pd-section pd-hero">
+        <div class="pd-grid pd-master-grid">
+          <div class="pd-text pd-span-3 pd-hero-desc" style="grid-column: 1 / span 3; grid-row: 1;">
+            <p class="ph-body" id="p7-desc-ru">СЕРИЯ ПЛАКАТОВ ДЛЯ&nbsp;АРТ-ПРОСТРАНСТВА UNDERDOG, ОБЪЕДИНЯЮЩЕГО ХУДОЖНИКОВ ВНЕ&nbsp;МЕЙНСТРИМ-КУЛЬТУРЫ. ТРИ НАБОРА ПЛАКАТОВ РЕШАЮТ РАЗНЫЕ КОММУНИКАЦИОННЫЕ ЗАДАЧИ И&nbsp;НАМЕРЕННО ГОВОРЯТ НА&nbsp;РАЗНЫХ ВИЗУАЛЬНЫХ ЯЗЫКАХ, КАК&nbsp;ОТРАЖЕНИЕ РАЗНОРОДНОСТИ САМОГО СООБЩЕСТВА.</p>
+            <p class="ph-body" id="p7-desc-en" style="display:none;">A POSTER SERIES FOR UNDERDOG, AN ART SPACE THAT BRINGS TOGETHER ARTISTS OUTSIDE OF MAINSTREAM CULTURE. THREE SETS OF POSTERS ADDRESS DIFFERENT COMMUNICATION GOALS AND INTENTIONALLY SPEAK IN DIFFERENT VISUAL LANGUAGES, REFLECTING THE DIVERSITY OF THE COMMUNITY ITSELF.</p>
+          </div>
+          <div class="pd-text pd-span-2 pd-hero-title" style="grid-column: 4 / span 2; grid-row: 1;">
+<ul class="proj-index-list">
+<li><span data-ru="СЛЕДУЙ ЗА МНОЙ" data-en="FOLLOW ME">СЛЕДУЙ ЗА&nbsp;МНОЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="В РИТМЕ ДНЕЙ" data-en="IN THE RHYTHM OF DAYS">В&nbsp;РИТМЕ ДНЕЙ</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span data-ru="COVER" data-en="COVER">COVER</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+<li><span class="proj-index-current" data-ru="UNDERDOG ПОСТЕРЫ" data-en="UNDERDOG POSTERS">UNDERDOG ПОСТЕРЫ <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2024</span></span></li>
+<li><span data-ru="[HAI] VIEW" data-en="[HAI] VIEW">[HAI] VIEW</span> <span class="work-year" style="font-family:'Times New Roman',Times,serif!important;display:inline-block;transform:scaleY(1.12);transform-origin:top left;vertical-align:top;"> 2025</span></li>
+</ul>
+          </div>
+          <div class="pd-text pd-span-2 pd-hero-tags" style="grid-column: 6 / span 2; grid-row: 1;">
+            <ul class="ph-tags">
+              <li>GRAPHIC DESIGN</li>
+              <li>PRINTED MATTER</li>
+            </ul>
+          </div>
+          <div class="pd-frame" style="grid-column: 8 / span 3; grid-row: 1; height: var(--pd-h0); padding:0; overflow:hidden;">
+            <img src="dino.png" alt="UNDERDOG Poster Hero" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame" style="grid-column: 1 / span 3; grid-row: 2; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+            <img src="poster_1.png" alt="UNDERDOG Poster 01" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame" style="grid-column: 4 / span 4; grid-row: 2; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+            <img src="underdog.gif" alt="UNDERDOG GIF" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div style="grid-column: 8 / span 3; grid-row: 2;"></div>
+          <div class="pd-frame" style="grid-column: 8 / span 3; grid-row: 3; height: var(--pd-h0); padding:0; overflow:hidden;">
+            <img src="poster_2.png" alt="UNDERDOG Poster 03" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div style="grid-column: 1 / span 7; grid-row: 3; display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+            <img id="p7-quote-ru" src="p7_quote_ru.svg" style="width:617px;height:209px;display:block;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+            <img id="p7-quote-en" src="p7_quote_en.svg" style="width:629px;height:186px;display:none;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+          </div>
+          <script>
+          (function(){
+            function makeDraggableP7(img) {
+              if(!img) return;
+              var dragging=false, ox=0, oy=0, tx=0, ty=0;
+              img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+              window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+              window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+              img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+              window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+              window.addEventListener('touchend',function(){dragging=false;});
+            }
+            makeDraggableP7(document.getElementById('p7-quote-ru'));
+            makeDraggableP7(document.getElementById('p7-quote-en'));
+          })();
+          </script>
+          <div class="pd-frame" style="grid-column: 1 / span 10; grid-row: 4; height: calc(var(--pd-h0) * 1.2); padding:0; overflow:hidden;">
+            <img src="poster3.png" alt="UNDERDOG Poster 04" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame" style="grid-column: 1 / span 5; grid-row: 5; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+            <img src="poster4.png" alt="UNDERDOG Poster 05" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame" style="grid-column: 6 / span 5; grid-row: 5; height: calc(var(--pd-h0) * 1.1); padding:0; overflow:hidden;">
+            <img src="poster5.png" alt="UNDERDOG Poster 06" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame" style="grid-column: 1 / span 3; grid-row: 6; height: var(--pd-h0); padding:0; overflow:hidden;">
+            <img src="poster6.png" alt="UNDERDOG Poster 07" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div style="grid-column: 4 / span 7; grid-row: 6; display:flex; align-items:center; justify-content:center; position:relative; overflow:visible;">
+            <img id="p7-quote2-ru" src="p7_quote2_ru.svg" style="width:617px;height:251px;display:block;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+            <img id="p7-quote2-en" src="p7_quote2_en.svg" style="width:747px;height:266px;display:none;cursor:grab;position:relative;flex-shrink:0;" draggable="false"/>
+          </div>
+          <script>
+          (function(){
+            function makeDraggableP7b(img) {
+              if(!img) return;
+              var dragging=false, ox=0, oy=0, tx=0, ty=0;
+              img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+              window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+              window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+              img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+              window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+              window.addEventListener('touchend',function(){dragging=false;});
+            }
+            makeDraggableP7b(document.getElementById('p7-quote2-ru'));
+            makeDraggableP7b(document.getElementById('p7-quote2-en'));
+          })();
+          </script>
+          <div class="pd-frame" style="grid-column: 1 / span 10; grid-row: 7; height: calc(var(--pd-h0) * 1.4); padding:0; overflow:hidden;">
+            <img src="posters.png" alt="UNDERDOG Posters Installation" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+          </div>
+          <div class="pd-frame" style="grid-column: 1 / span 3; grid-row: 8; height: var(--pd-h0); padding:0; overflow:hidden; align-self: end; position:relative;">
+            <img src="poster8.png" alt="UNDERDOG Poster 10" style="width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;" />
+          </div>
+          <div style="grid-column: 1 / span 5; grid-row: 8; position:relative; pointer-events:none; z-index:50; height: var(--pd-h0); display:flex; align-items:center; justify-content:center;">
+            <img id="p7-quote3-ru" src="p7_quote3_ru.svg" style="width:686px;height:256px;display:block;cursor:grab;pointer-events:all;position:relative;flex-shrink:0;" draggable="false"/>
+            <img id="p7-quote3-en" src="p7_quote3_en.svg" style="width:633px;height:308px;display:none;cursor:grab;pointer-events:all;position:relative;flex-shrink:0;" draggable="false"/>
+          </div>
+          <script>
+          (function(){
+            function makeDraggableP7c(img) {
+              if(!img) return;
+              var dragging=false, ox=0, oy=0, tx=0, ty=0;
+              img.addEventListener('mousedown',function(e){dragging=true;ox=e.clientX-tx;oy=e.clientY-ty;img.style.cursor='grabbing';e.preventDefault();});
+              window.addEventListener('mousemove',function(e){if(!dragging)return;tx=e.clientX-ox;ty=e.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';});
+              window.addEventListener('mouseup',function(){if(!dragging)return;dragging=false;img.style.cursor='grab';});
+              img.addEventListener('touchstart',function(e){dragging=true;var t=e.touches[0];ox=t.clientX-tx;oy=t.clientY-ty;e.preventDefault();},{passive:false});
+              window.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];tx=t.clientX-ox;ty=t.clientY-oy;img.style.transform='translate('+tx+'px,'+ty+'px)';e.preventDefault();},{passive:false});
+              window.addEventListener('touchend',function(){dragging=false;});
+            }
+            makeDraggableP7c(document.getElementById('p7-quote3-ru'));
+            makeDraggableP7c(document.getElementById('p7-quote3-en'));
+          })();
+          </script>
+          <div class="pd-frame" style="grid-column: 6 / span 5; grid-row: 8; height: calc(var(--pd-h0) * 2.1); padding:0; overflow:hidden;">
+            <img src="poster7.png" alt="UNDERDOG Poster 09" style="width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;" />
+          </div>
+        </div><!-- /pd-master-grid -->
+      </div><!-- /pd-section pd-hero -->
+    </div><!-- /detail-content -->
+  </div><!-- /detail-page -->
+</div><!-- /page-p7 -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+window.currentLang = 'en';
+
+function copyEmail() {
+  navigator.clipboard.writeText('harmstanta@gmail.com').then(() => {
+    const lang = navigator.language || navigator.userLanguage || 'en';
+    const code = lang.toLowerCase().split('-')[0];
+    const messages = {
+      'ru': 'Адрес скопирован',
+      'en': 'Email copied',
+      'it': 'Email copiata',
+      'fr': 'Email copié',
+      'de': 'E-Mail kopiert',
+      'es': 'Email copiado',
+      'pt': 'Email copiado',
+      'pl': 'Email skopiowany',
+      'nl': 'E-mail gekopieerd',
+      'tr': 'E-posta kopyalandı',
+      'ja': 'メールをコピーしました',
+      'zh': '邮箱已复制',
+      'ko': '이메일 복사됨',
+      'ar': 'تم نسخ البريد الإلكتروني',
+      'uk': 'Адресу скопійовано',
+    };
+    const msg = messages[code] || messages['en'];
+
+    let toast = document.getElementById('copy-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'copy-toast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1A1A1A;
+        color: #F1F1F1;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 9px;
+        line-height: 13px;
+        padding: 5px 12px;
+        border-radius: 2px;
+        z-index: 99999;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+        text-transform: none;
+        letter-spacing: 0.03em;
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+  });
+}
+
+function toggleContacts() {
+  const d = document.getElementById('contacts-dropdown');
+  const w = document.querySelector('.contacts-wrap');
+  if (d) d.classList.toggle('open');
+  if (w) w.classList.toggle('open');
+}
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-ru][data-en]').forEach(el => {
+    const year = el.querySelector('.work-year');
+    el.childNodes[0].textContent = el.getAttribute('data-' + lang);
+    if (year && !year.previousSibling?.textContent?.endsWith(' ')) {
+      el.childNodes[0].textContent = el.getAttribute('data-' + lang) + ' ';
+    }
+  });
+}
+
+function showProject(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+  applyLang(window.currentLang);
+  // Highlight current project in nav lists
+  document.querySelectorAll('.nav-proj-list li a').forEach(a => {
+    a.classList.remove('nav-current');
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'" + id + "'")) {
+      a.classList.add('nav-current');
+    }
+  });
+}
+function showHome() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-home');
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function setLang(lang) {
+  window.currentLang = lang;
+  const ru = document.getElementById('lang-ru');
+  const en = document.getElementById('lang-en');
+  const about = document.getElementById('nav-about');
+  const bioEn = document.getElementById('bio-en');
+  const bioRu = document.getElementById('bio-ru');
+  const workEn = document.getElementById('worklist-en');
+  const workRu = document.getElementById('worklist-ru');
+  const descP3ru = document.getElementById('desc-p3-ru');
+  const descP3en = document.getElementById('desc-p3-en');
+  const descP7ru = document.getElementById('desc-p7-ru');
+  const descP7en = document.getElementById('desc-p7-en');
+  const descP5ru = document.getElementById('desc-p5-ru');
+  const descP5en = document.getElementById('desc-p5-en');
+  const descP2ru = document.getElementById('desc-p2-ru');
+  const descP2en = document.getElementById('desc-p2-en');
+  const descP6ru = document.getElementById('desc-p6-ru');
+  const descP6en = document.getElementById('desc-p6-en');
+  const descP4ru = document.getElementById('desc-p4-ru');
+  const descP4en = document.getElementById('desc-p4-en');
+  const skillsEn = document.getElementById('skills-label-en');
+  const skillsRu = document.getElementById('skills-label-ru');
+  if (lang === 'ru') {
+    ru.style.background='#FFFFFF'; ru.style.color='#1A1A1A';
+    en.style.background='transparent'; en.style.color='#1A1A1A';
+    document.querySelectorAll('.skills-label-en-proj').forEach(el => el.style.display='none');
+    document.querySelectorAll('.skills-label-ru-proj').forEach(el => { el.style.display='inline-block'; });
+    if (about) about.textContent='ПРОЕКТЫ';
+    document.querySelectorAll('#nav-about-proj').forEach(el => el.textContent='ПРОЕКТЫ');
+    document.querySelectorAll('#nav-proj-list-en').forEach(el => el.style.display='none');
+    document.querySelectorAll('#nav-proj-list-ru').forEach(el => el.style.display='block');
+    const clEn = document.getElementById('contacts-label-en');
+    const clRu = document.getElementById('contacts-label-ru');
+    if (clEn) clEn.style.display='none';
+    if (clRu) {
+      clRu.style.display='inline-block';
+      clRu.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      clRu.style.setProperty('font-size', '14px', 'important');
+      clRu.style.setProperty('transform', 'scaleY(1.2)', 'important');
+      clRu.style.setProperty('transform-origin', 'top left', 'important');
+    }
+    if (bioEn) bioEn.style.display='none';
+    if (bioRu) bioRu.style.display='block';
+    if (workEn) workEn.style.display='none';
+    if (workRu) workRu.style.display='block';
+    if (descP3ru) descP3ru.style.display='block';
+    if (descP3en) descP3en.style.display='none';
+    if (descP7ru) descP7ru.style.display='block';
+    if (descP7en) descP7en.style.display='none';
+    if (descP5ru) descP5ru.style.display='block';
+    if (descP5en) descP5en.style.display='none';
+    if (descP2ru) descP2ru.style.display='block';
+    if (descP2en) descP2en.style.display='none';
+    const p2descRu = document.getElementById('p2-desc-ru');
+    const p2descEn = document.getElementById('p2-desc-en');
+    if (p2descRu) p2descRu.style.display='block';
+    if (p2descEn) p2descEn.style.display='none';
+    const p3descRu = document.getElementById('p3-desc-ru');
+    const p3descEn = document.getElementById('p3-desc-en');
+    if (p3descRu) p3descRu.style.display='block';
+    if (p3descEn) p3descEn.style.display='none';
+    const p5descRu = document.getElementById('p5-desc-ru');
+    const p5descEn = document.getElementById('p5-desc-en');
+    if (p5descRu) p5descRu.style.display='block';
+    if (p5descEn) p5descEn.style.display='none';
+    const p5quoteEn = document.getElementById('p5-quote-en');
+    if (p5quoteEn) p5quoteEn.style.display='none';
+    const p5quoteRu = document.getElementById('p5-quote-ru');
+    if (p5quoteRu) p5quoteRu.style.display='block';
+    const p5quote2En = document.getElementById('p5-quote2-en');
+    if (p5quote2En) p5quote2En.style.display='none';
+    const p5quote2Ru = document.getElementById('p5-quote2-ru');
+    if (p5quote2Ru) p5quote2Ru.style.display='block';
+    const p3quoteEn = document.getElementById('p3-quote-en');
+    if (p3quoteEn) p3quoteEn.style.display='none';
+    const p3quoteRu = document.getElementById('p3-quote-ru');
+    if (p3quoteRu) p3quoteRu.style.display='block';
+    const p3quote2En = document.getElementById('p3-quote2-en');
+    if (p3quote2En) p3quote2En.style.display='none';
+    const p3quote2Ru = document.getElementById('p3-quote2-ru');
+    if (p3quote2Ru) p3quote2Ru.style.display='block';
+    const p7descRu = document.getElementById('p7-desc-ru');
+    const p7descEn = document.getElementById('p7-desc-en');
+    if (p7descRu) p7descRu.style.display='block';
+    if (p7descEn) p7descEn.style.display='none';
+    const p7quoteEn = document.getElementById('p7-quote-en');
+    if (p7quoteEn) p7quoteEn.style.display='none';
+    const p7quoteRu = document.getElementById('p7-quote-ru');
+    if (p7quoteRu) p7quoteRu.style.display='block';
+    const p7quote2En = document.getElementById('p7-quote2-en');
+    if (p7quote2En) p7quote2En.style.display='none';
+    const p7quote2Ru = document.getElementById('p7-quote2-ru');
+    if (p7quote2Ru) p7quote2Ru.style.display='block';
+    const p7quote3En = document.getElementById('p7-quote3-en');
+    if (p7quote3En) p7quote3En.style.display='none';
+    const p7quote3Ru = document.getElementById('p7-quote3-ru');
+    if (p7quote3Ru) p7quote3Ru.style.display='block';
+    const q2ru = document.getElementById('quote-p2-img-ru');
+    const q2en = document.getElementById('quote-p2-img-en');
+    if (q2ru) q2ru.style.display='block';
+    if (q2en) q2en.style.display='none';
+    const q2ru2 = document.getElementById('quote-p2-ru2');
+    const q2en2 = document.getElementById('quote-p2-en2');
+    if (q2ru2) q2ru2.style.display='block';
+    if (q2en2) q2en2.style.display='none';
+    const q2ru3 = document.getElementById('quote-p2-ru3');
+    const q2en3 = document.getElementById('quote-p2-en3');
+    if (q2ru3) q2ru3.style.display='block';
+    if (q2en3) q2en3.style.display='none';
+    if (descP6ru) descP6ru.style.display='block';
+    if (descP6en) descP6en.style.display='none';
+    if (descP4ru) descP4ru.style.display='block';
+    if (descP4en) descP4en.style.display='none';
+    if (skillsEn) skillsEn.style.display='none';
+    if (skillsRu) { skillsRu.style.display='inline-block'; skillsRu.style.setProperty('font-family',"'Times New Roman',Times,serif",'important'); }
+  } else {
+    en.style.background='#FFFFFF'; en.style.color='#1A1A1A';
+    ru.style.background='transparent'; ru.style.color='#1A1A1A';
+    document.querySelectorAll('.skills-label-en-proj').forEach(el => { el.style.display='inline-block'; });
+    document.querySelectorAll('.skills-label-ru-proj').forEach(el => el.style.display='none');
+    if (about) about.textContent='PROJECTS';
+    document.querySelectorAll('#nav-about-proj').forEach(el => el.textContent='PROJECTS');
+    document.querySelectorAll('#nav-proj-list-en').forEach(el => el.style.display='block');
+    document.querySelectorAll('#nav-proj-list-ru').forEach(el => el.style.display='none');
+    const clEn = document.getElementById('contacts-label-en');
+    const clRu = document.getElementById('contacts-label-ru');
+    if (clEn) {
+      clEn.style.display='inline-block';
+      clEn.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      clEn.style.setProperty('font-size', '14px', 'important');
+      clEn.style.setProperty('transform', 'scaleY(1.2)', 'important');
+      clEn.style.setProperty('transform-origin', 'top left', 'important');
+    }
+    if (clRu) clRu.style.display='none';
+    if (bioEn) bioEn.style.display='block';
+    if (bioRu) bioRu.style.display='none';
+    if (workEn) workEn.style.display='block';
+    if (workRu) workRu.style.display='none';
+    if (descP3ru) descP3ru.style.display='none';
+    if (descP3en) descP3en.style.display='block';
+    if (descP7ru) descP7ru.style.display='none';
+    if (descP7en) descP7en.style.display='block';
+    if (descP5ru) descP5ru.style.display='none';
+    if (descP5en) descP5en.style.display='block';
+    if (descP2ru) descP2ru.style.display='none';
+    if (descP2en) descP2en.style.display='block';
+    const p2descRu = document.getElementById('p2-desc-ru');
+    const p2descEn = document.getElementById('p2-desc-en');
+    if (p2descRu) p2descRu.style.display='none';
+    if (p2descEn) p2descEn.style.display='block';
+    const p3descRu = document.getElementById('p3-desc-ru');
+    const p3descEn = document.getElementById('p3-desc-en');
+    if (p3descRu) p3descRu.style.display='none';
+    if (p3descEn) p3descEn.style.display='block';
+    const p5descRu = document.getElementById('p5-desc-ru');
+    const p5descEn = document.getElementById('p5-desc-en');
+    if (p5descRu) p5descRu.style.display='none';
+    if (p5descEn) p5descEn.style.display='block';
+    const p5quoteEn = document.getElementById('p5-quote-en');
+    if (p5quoteEn) p5quoteEn.style.display='block';
+    const p5quoteRu = document.getElementById('p5-quote-ru');
+    if (p5quoteRu) p5quoteRu.style.display='none';
+    const p5quote2En = document.getElementById('p5-quote2-en');
+    if (p5quote2En) p5quote2En.style.display='block';
+    const p5quote2Ru = document.getElementById('p5-quote2-ru');
+    if (p5quote2Ru) p5quote2Ru.style.display='none';
+    const p3quoteEn = document.getElementById('p3-quote-en');
+    if (p3quoteEn) p3quoteEn.style.display='block';
+    const p3quoteRu = document.getElementById('p3-quote-ru');
+    if (p3quoteRu) p3quoteRu.style.display='none';
+    const p3quote2En = document.getElementById('p3-quote2-en');
+    if (p3quote2En) p3quote2En.style.display='block';
+    const p3quote2Ru = document.getElementById('p3-quote2-ru');
+    if (p3quote2Ru) p3quote2Ru.style.display='none';
+    const p7descRu = document.getElementById('p7-desc-ru');
+    const p7descEn = document.getElementById('p7-desc-en');
+    if (p7descRu) p7descRu.style.display='none';
+    if (p7descEn) p7descEn.style.display='block';
+    const p7quoteEn = document.getElementById('p7-quote-en');
+    if (p7quoteEn) p7quoteEn.style.display='block';
+    const p7quoteRu = document.getElementById('p7-quote-ru');
+    if (p7quoteRu) p7quoteRu.style.display='none';
+    const p7quote2En = document.getElementById('p7-quote2-en');
+    if (p7quote2En) p7quote2En.style.display='block';
+    const p7quote2Ru = document.getElementById('p7-quote2-ru');
+    if (p7quote2Ru) p7quote2Ru.style.display='none';
+    const p7quote3En = document.getElementById('p7-quote3-en');
+    if (p7quote3En) p7quote3En.style.display='block';
+    const p7quote3Ru = document.getElementById('p7-quote3-ru');
+    if (p7quote3Ru) p7quote3Ru.style.display='none';
+    const q2ru = document.getElementById('quote-p2-img-ru');
+    const q2en = document.getElementById('quote-p2-img-en');
+    if (q2ru) q2ru.style.display='none';
+    if (q2en) q2en.style.display='block';
+    const q2ru2 = document.getElementById('quote-p2-ru2');
+    const q2en2 = document.getElementById('quote-p2-en2');
+    if (q2ru2) q2ru2.style.display='none';
+    if (q2en2) q2en2.style.display='block';
+    const q2ru3 = document.getElementById('quote-p2-ru3');
+    const q2en3 = document.getElementById('quote-p2-en3');
+    if (q2ru3) q2ru3.style.display='none';
+    if (q2en3) q2en3.style.display='block';
+    if (descP6ru) descP6ru.style.display='none';
+    if (descP6en) descP6en.style.display='block';
+    if (descP4ru) descP4ru.style.display='none';
+    if (descP4en) descP4en.style.display='block';
+    if (skillsEn) { skillsEn.style.display='inline-block'; skillsEn.style.setProperty('font-family',"'Times New Roman',Times,serif",'important'); }
+    if (skillsRu) skillsRu.style.display='none';
+  }
+  applyLang(lang);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  setLang('en');
+  ['skills-label-en','skills-label-ru','contacts-label-en','contacts-label-ru'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+      el.style.setProperty('font-size', '14px', 'important');
+      el.style.setProperty('transform', 'scaleY(1.2)', 'important');
+      el.style.setProperty('transform-origin', 'top left', 'important');
+      el.style.setProperty('display', el.style.display === 'none' ? 'none' : 'inline-block', 'important');
+    }
+  });
+  const btn = document.querySelector('.contacts-btn');
+  if (btn) {
+    btn.style.setProperty('font-family', "'Times New Roman', Times, serif", 'important');
+    btn.style.setProperty('font-size', '14px', 'important');
+  }
+  // Badge physics + rope
+  const container = document.getElementById('badgeContainer');
+  const canvas    = document.getElementById('badgeCanvas');
+  const card      = document.getElementById('badgeCard');
+  if (!container || !canvas || !card) return;
+
+  const ctx       = canvas.getContext('2d');
+  const CARD_W  = 225;
+  const L       = 130;
+  const MAX_ANG = 0.52; // ~30 degrees max swing
+
+  let angle = 0, vel = 0;
+  let W, H, ax, ay;
+
+  let dragging = false;
+  let freeX, freeY, pvx, pvy, dox, doy;
+
+  function setup() {
+    W = container.offsetWidth;
+    H = container.offsetHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+    ax = W / 2;
+    ay = 0;
+  }
+
+  function cardCenter() {
+    if (dragging) return [freeX, freeY];
+    return [ax + Math.sin(angle) * L, ay + Math.cos(angle) * L];
+  }
+
+  function tick() {
+    if (!dragging) {
+      vel += -0.003 * Math.sin(angle);
+      vel *= 0.92;
+      angle += vel;
+      if (angle >  MAX_ANG) { angle =  MAX_ANG; vel = -Math.abs(vel) * 0.3; }
+      if (angle < -MAX_ANG) { angle = -MAX_ANG; vel =  Math.abs(vel) * 0.3; }
+    }
+
+    const [cx, cy] = cardCenter();
+    card.style.left = (cx - CARD_W / 2) + 'px';
+    card.style.top  = cy + 'px';
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    const rx = cx, ry = cy + 8;
+    const mx = (ax + rx) / 2;
+    const my = (ay + ry) / 2 + 14;
+    ctx.quadraticCurveTo(mx, my, rx, ry);
+    ctx.strokeStyle = '#8C847C';
+    ctx.lineWidth   = 4;
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+
+    requestAnimationFrame(tick);
+  }
+
+  function getXY(e) {
+    const r = container.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return [s.clientX - r.left, s.clientY - r.top];
+  }
+
+  function isOnCard(mx, my) {
+    const [cx, cy] = cardCenter();
+    const px = cx - CARD_W / 2, py = cy;
+    const ch = card.offsetHeight || 220;
+    return mx >= px && mx <= px + CARD_W && my >= py && my <= py + ch;
+  }
+
+  function onDown(e) {
+    const [mx, my] = getXY(e);
+    if (!isOnCard(mx, my)) return;
+    dragging = true;
+    const [cx, cy] = cardCenter();
+    freeX = cx; freeY = cy;
+    pvx = cx; pvy = cy;
+    dox = mx - cx; doy = my - cy;
+    card.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    const [mx, my] = getXY(e);
+    pvx = freeX; pvy = freeY;
+    freeX = mx - dox;
+    const ch = card.offsetHeight || 220;
+    freeY = Math.max(10, Math.min(H - ch, my - doy));
+
+    const da = Math.atan2(freeX - ax, Math.max(freeY - ay, 1));
+    if (Math.abs(da) > MAX_ANG) {
+      const clampedA = Math.sign(da) * MAX_ANG;
+      const dist = Math.sqrt((freeX-ax)**2 + (freeY-ay)**2);
+      freeX = ax + Math.sin(clampedA) * dist;
+    }
+    e.preventDefault();
+  }
+
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    card.style.cursor = 'grab';
+    const dx = freeX - ax, dy = freeY - ay;
+    angle = Math.atan2(dx, Math.max(dy, 1));
+    angle = Math.max(-MAX_ANG, Math.min(MAX_ANG, angle));
+    vel = ((freeX - pvx) * Math.cos(angle) - (freeY - pvy) * Math.sin(angle)) / L * 0.4;
+  }
+
+  container.addEventListener('mousedown', onDown);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  container.addEventListener('touchstart', onDown, { passive: false });
+  window.addEventListener('touchmove', onMove, { passive: false });
+  window.addEventListener('touchend', onUp);
+
+  // Photo upload
+  const photoDiv = document.getElementById('badgePhoto');
+  if (photoDiv) {
+    const fi = document.createElement('input');
+    fi.type = 'file';
+    fi.accept = 'image/*';
+    fi.style.display = 'none';
+    document.body.appendChild(fi);
+    photoDiv.style.cursor = 'pointer';
+    photoDiv.addEventListener('mousedown', e => e.stopPropagation());
+    photoDiv.addEventListener('click', e => { fi.click(); e.stopPropagation(); });
+    fi.addEventListener('change', () => {
+      const f = fi.files && fi.files[0];
+      if (!f) return;
+      photoDiv.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(f);
+      photoDiv.appendChild(img);
+    });
+  }
+
+  setup();
+  tick();
+  if (window.ResizeObserver) new ResizeObserver(setup).observe(container);
+  else window.addEventListener('resize', setup);
+});
+</script>
+<script>
+/* Keep block #3 height tied to the real rendered height of block #1 (ideal size) in the header stack. */
+document.addEventListener('DOMContentLoaded', () => {
+  const page = document.getElementById('page-p2');
+  if (!page) return;
+  const grid = page.querySelector('.pd-frames-grid');
+  const base = page.querySelector('.pd-follow-top .pd-frame.pd-h0') || page.querySelector('.pd-follow-top .pd-frame');
+  if (!grid || !base) return;
+
+  const apply = () => {
+    const h = base.getBoundingClientRect().height;
+    if (h && h > 0) grid.style.setProperty('--pfH', `${h}px`);
+  };
+
+  apply();
+  window.addEventListener('resize', apply);
+  if (window.ResizeObserver) new ResizeObserver(apply).observe(base);
+});
+</script>
+<script>
+(function kickGif(){
+  function run(){
+    var img = document.querySelector('.cover-b3');
+    if(!img) return;
+    var s = img.getAttribute('src');
+    // force reload once to ensure animation starts in some browsers
+    img.setAttribute('src','');
+ 
